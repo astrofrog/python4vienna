@@ -28,8 +28,8 @@ Useful links
 * `Astropy <http://www.astropy.org>`_
 * More about the `IPython notebook <http://ipython.org/notebook.html>`_
 
-Monday
-------
+Monday: Getting started with Python
+-----------------------------------
 
 Part 1
 ^^^^^^
@@ -53,10 +53,15 @@ Part 3
 * `Introduction to Numpy <_static/04.%20Introduction%20to%20Numpy.html>`_
 * `Introduction to Matplotlib <_static/05.%20Introduction%20to%20Matplotlib.html>`_
 
-.. * `Handling FITS files <_static/Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Handling%20FITS%20files%20-%20Solutions.html>`_]
-.. * `Units and Quantities <_static/Unit%20Conversion.html>`_ [`Problem solutions <_static/Unit%20Conversion%20-%20Solutions.html>`_]
-.. * `Tables <_static/Tables.html>`_ [`Problem solutions <_static/Tables%20-%20Solutions.html>`_]
-.. * `Celestial Coordinates <_static/Celestial%20Coordinates.html>`_ [`Problem solutions <_static/Celestial%20Coordinates%20-%20Solutions.html>`_]
+Tuesday: Introduction to Astropy
+--------------------------------
+
+* `Units and Quantities <_static/Astropy%20-%20Unit%20Conversion.html>`_ [`Problem solutions <_static/Astropy%20-%20Unit%20Conversion%20-%20Solutions.html>`_]
+* `Tables <_static/Astropy%20-%20Tables.html>`_ [`Problem solutions <_static/Astropy%20-%20Tables%20-%20Solutions.html>`_]
+* `Celestial Coordinates <_static/Astropy%20-%20Celestial%20Coordinates.html>`_ [`Problem solutions <_static/Astropy%20-%20Celestial%20Coordinates%20-%20Solutions.html>`_]
+* `Handling FITS files <_static/Astropy%20-%20Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Astropy%20-%20Handling%20FITS%20files%20-%20Solutions.html>`_]
+
+
 .. * `Affiliated Package: Astroquery <_static/Affiliated%20Package%20-%20Astroquery.html>`_
 .. * `Affiliated Package: APLpy <_static/Affiliated%20Package%20-%20APLpy.html>`_
 
