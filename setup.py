@@ -126,6 +126,9 @@ class BuildNotes(Command):
         if not os.path.exists(data_dir):
             os.mkdir(data_dir)
 
+        for filename in glob.glob('notebooks/data/*'):
+            shutil.copy2(filename, os.path.join(data_dir, os.path.basename(filename)))
+
 
 class DeployNotes(Command):
 
