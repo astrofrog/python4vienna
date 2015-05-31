@@ -2,8 +2,84 @@
 
 import os
 import glob
+import shutil
 
 from setuptools import setup, Command
+
+import string
+
+
+def strip_punctuation(text):
+    return ''.join(ch for ch in text if ch not in string.punctuation)
+
+
+class BuildTOC(Command):
+
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+
+        from IPython.nbformat.current import read, write
+
+        with open('template.rst', 'r') as f:
+            template = f.read()
+
+        toc = ""
+
+        from urllib import quote
+
+        for notebook in (glob.glob('lectures/*.ipynb')):
+
+            with open(notebook, 'r') as f:
+                nb = read(f, 'json')
+
+            for ws in nb.worksheets:
+                for cell in ws.cells:
+                    if cell.cell_type == 'heading':
+                        if cell['level'] > 1:
+                            continue
+                        toc += ("   " * (cell['level'] - 1) +
+                                "* `{0} <_static/{1}.html#{2}>`__\n".format(cell['source'].replace('`', ''),
+                                                                            quote(os.path.basename(notebook)).replace('.ipynb', ''),
+                                                                            strip_punctuation(cell['source']).replace(' ', '-')))
+
+        with open('docs/index.rst', 'w') as f:
+            f.write(template.format(lectures_toc=toc))
+
+class ClearOutput(Command):
+
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+
+        from IPython.nbformat.current import read, write
+
+        for notebook in glob.glob('notebooks/*.ipynb'):
+
+            with open(notebook, 'r') as f:
+                nb = read(f, 'json')
+
+            for ws in nb.worksheets:
+                for cell in ws.cells:
+                    if cell.cell_type == 'code':
+                        cell.outputs = []
+                        if 'prompt_number' in cell:
+                            cell.pop('prompt_number')
+
+            with open(notebook, 'w') as f:
+                write(nb, f, 'json')
 
 
 class BuildNotes(Command):
@@ -19,37 +95,36 @@ class BuildNotes(Command):
     def run(self):
 
         import os
+        import sys
         import shutil
         import tempfile
 
         from IPython.nbconvert.nbconvertapp import NbConvertApp
 
-        import sys
+        self.reinitialize_command('run', inplace=True)
+        self.run_command('run')
+
         for arg in range(len(sys.argv[1:])):
             sys.argv.pop(-1)
 
-        # Convert the notebooks to HTML notebooks.
+        if not os.path.exists(os.path.join('docs', '_static')):
+            os.mkdir(os.path.join('docs', '_static'))
+
+        # Now convert the lecture notes, problem sets, and practice problems to
+        # HTML notebooks.
 
         app = NbConvertApp()
         app.initialize()
         app.export_format = 'html'
-        for notebook in (glob.glob('notebooks/*.ipynb')):
+        for notebook in glob.glob('notebooks/*.ipynb'):
+            print("Rendering {0}...".format(notebook))
             app.notebooks = [notebook]
-            app.output_base = notebook.replace('.ipynb', '')
+            app.output_base = os.path.join('docs', '_static', os.path.basename(notebook.replace('.ipynb', '')))
             app.start()
 
-        # Make an index of all notes
-        f = open('notebooks.html', 'w')
-        f.write("<html>\n  <body>\n")
-
-        f.write("    <h1>Solutions:</h1>\n")
-        f.write("    <ul>\n")
-        for page in glob.glob('notebooks/*.html'):
-            f.write('      <li><a href="{0}">{1}</a></li>\n'.format(page, os.path.basename(page).replace('.html', '')))
-        f.write('    </ul>\n')
-
-        f.write('  </body>\n</html>')
-        f.close()
+        data_dir = os.path.join('docs', '_static', 'data')
+        if not os.path.exists(data_dir):
+            os.mkdir(data_dir)
 
 
 class DeployNotes(Command):
@@ -74,19 +149,33 @@ class DeployNotes(Command):
         ftp = FTP(SERVER)
         ftp.login(user=USER, passwd=getpass.getpass())
 
-        ftp.cwd('/public_html/python4imprs')
+        for root, dirnames, filenames in os.walk('docs/_build/html/'):
 
-        for slides in ProgressBar.iterate(glob.glob('notebooks/data/*')
-                                          + glob.glob('notebooks/*.html')):
-            try:
-                remote_size = ftp.size(slides)
-            except:
-                remote_size = None
-            local_size = os.path.getsize(slides)
-            if local_size != remote_size:
-                ftp.storbinary('STOR ' + slides, open(slides, 'rb'))
+            print("Uploading files from {0}".format(root))
 
-        ftp.storbinary('STOR notebooks.html', open('notebooks.html', 'rb'))
+            ftp.cwd('/public_html/PY4SCI_SS_2015')
+            for directory in root.split('/')[3:]:
+
+                # Try and change to directory, make if not present
+                try:
+                    ftp.cwd(directory)
+                except:
+                    ftp.mkd(directory)
+                    ftp.cwd(directory)
+
+            for filename in ProgressBar(filenames):
+
+                local_file = os.path.join(root, filename)
+
+                try:
+                    remote_size = ftp.size(filename)
+                except:
+                    remote_size = None
+
+                local_size = os.path.getsize(local_file)
+
+                if local_size != remote_size:
+                    ftp.storbinary('STOR ' + filename, open(local_file, 'rb'))
 
         ftp.quit()
 
@@ -107,15 +196,19 @@ class RunNotes(Command):
         # HTML notebooks.
 
         from runipy.notebook_runner import NotebookRunner
+        from IPython.nbformat.current import read, write
 
         start_dir = os.path.abspath('.')
 
-        for notebook in (glob.glob('notebooks/*.ipynb')):
+        for notebook in glob.glob('notebooks/*.ipynb'):
+            print("Running {0}...".format(notebook))
             os.chdir(os.path.dirname(notebook))
-            r = NotebookRunner(os.path.basename(notebook), pylab=True)
+            with open(os.path.basename(notebook)) as f:
+                r = NotebookRunner(read(f, 'json'), pylab=False)
             r.run_notebook(skip_exceptions=True)
-            r.save_notebook(os.path.basename(notebook))
+            with open(os.path.basename(notebook), 'w') as f:
+                write(r.nb, f, 'json')
             os.chdir(start_dir)
 
 
-setup(name='python4imprs', cmdclass={'run':RunNotes, 'build': BuildNotes, 'deploy':DeployNotes})
+setup(name='py4sci', cmdclass={'run':RunNotes, 'build': BuildNotes, 'deploy':DeployNotes, 'clear':ClearOutput, 'toc': BuildTOC})
