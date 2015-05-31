@@ -1,6 +1,10 @@
 Vienna Python/Astropy Workshop
 ==============================
 
+These notes are for a Python/Astropy workshop held at the University of
+Vienna by `Thomas Robitaille <http://www.mpia.de/~robitaille>`_ from June
+1st-3rd 2015.
+
 .. note:: Please bring your laptop to the workshop!
 
 The purpose of this workshop is to get you started with Python and learn
