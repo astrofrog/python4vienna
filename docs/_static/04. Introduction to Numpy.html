@@ -3112,8 +3112,8 @@ array([  0.00000000e+00,   6.42787610e-01,   9.84807753e-01,
 
 <div class="output_text output_subarea output_pyout">
 <pre>
-array([ 0.87023939,  0.65424596,  0.2304803 ,  0.12167206,  0.8533076 ,
-        0.17566293,  0.09411842,  0.39868859,  0.77168235,  0.71794588])
+array([ 0.6637507 ,  0.93025996,  0.33024585,  0.29777421,  0.0943351 ,
+        0.74529418,  0.20867511,  0.59471547,  0.51273948,  0.27074883])
 </pre>
 </div>
 
@@ -3145,8 +3145,8 @@ array([ 0.87023939,  0.65424596,  0.2304803 ,  0.12167206,  0.8533076 ,
 
 <div class="output_text output_subarea output_pyout">
 <pre>
-array([ 2.90828387,  4.47888084,  3.15527498,  3.0831225 ,  3.04507376,
-        3.54655226,  3.18632715,  2.82263346,  3.85084341,  1.78308913])
+array([ 3.79225804,  2.29087431,  3.46233192,  2.75967052,  5.80466559,
+        2.91997222,  2.1396917 ,  1.55807558,  3.06372902,  2.90630578])
 </pre>
 </div>
 
@@ -3184,7 +3184,19 @@ array([ 2.90828387,  4.47888084,  3.15527498,  3.0831225 ,  3.04507376,
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-cat: data/columns.txt: No such file or directory
+1995.00274 0.944444
+1995.00548 -1.61111
+1995.00821 -3.55556
+1995.01095 -9.83333
+1995.01369 -10.2222
+1995.01643 -9.5
+1995.01916 -10.2222
+1995.02190 -6.61111
+1995.02464 -2.94444
+1995.02738 1.55556
+1995.03012 0.277778
+1995.03285 -1.44444
+1995.03559 -3.61111
 
 </pre>
 </div>
@@ -3220,24 +3232,27 @@ cat: data/columns.txt: No such file or directory
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
+<div class="output_area"><div class="prompt output_prompt">Out[47]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
 <pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-47-4a82e74ad9d4&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>data <span class="ansiblue">=</span> np<span class="ansiblue">.</span>loadtxt<span class="ansiblue">(</span><span class="ansiblue">&apos;data/columns.txt&apos;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">      2</span> data<span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/numpy/lib/npyio.py</span> in <span class="ansicyan">loadtxt</span><span class="ansiblue">(fname, dtype, comments, delimiter, converters, skiprows, usecols, unpack, ndmin)</span>
-<span class="ansigreen">    738</span>                 fh <span class="ansiblue">=</span> iter<span class="ansiblue">(</span>open<span class="ansiblue">(</span>fname<span class="ansiblue">,</span> <span class="ansiblue">&apos;U&apos;</span><span class="ansiblue">)</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    739</span>             <span class="ansigreen">else</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 740</span><span class="ansired">                 </span>fh <span class="ansiblue">=</span> iter<span class="ansiblue">(</span>open<span class="ansiblue">(</span>fname<span class="ansiblue">)</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    741</span>         <span class="ansigreen">else</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">    742</span>             fh <span class="ansiblue">=</span> iter<span class="ansiblue">(</span>fname<span class="ansiblue">)</span><span class="ansiblue"></span>
-
-<span class="ansired">FileNotFoundError</span>: [Errno 2] No such file or directory: &apos;data/columns.txt&apos;</pre>
+array([[  1.99500274e+03,   9.44444000e-01],
+       [  1.99500548e+03,  -1.61111000e+00],
+       [  1.99500821e+03,  -3.55556000e+00],
+       [  1.99501095e+03,  -9.83333000e+00],
+       [  1.99501369e+03,  -1.02222000e+01],
+       [  1.99501643e+03,  -9.50000000e+00],
+       [  1.99501916e+03,  -1.02222000e+01],
+       [  1.99502190e+03,  -6.61111000e+00],
+       [  1.99502464e+03,  -2.94444000e+00],
+       [  1.99502738e+03,   1.55556000e+00],
+       [  1.99503012e+03,   2.77778000e-01],
+       [  1.99503285e+03,  -1.44444000e+00],
+       [  1.99503559e+03,  -3.61111000e+00]])
+</pre>
 </div>
+
 </div>
 
 </div>
@@ -3265,32 +3280,6 @@ cat: data/columns.txt: No such file or directory
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-48-45bca74edaeb&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>date<span class="ansiblue">,</span> temperature <span class="ansiblue">=</span> np<span class="ansiblue">.</span>loadtxt<span class="ansiblue">(</span><span class="ansiblue">&apos;data/columns.txt&apos;</span><span class="ansiblue">,</span> unpack<span class="ansiblue">=</span><span class="ansigreen">True</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/numpy/lib/npyio.py</span> in <span class="ansicyan">loadtxt</span><span class="ansiblue">(fname, dtype, comments, delimiter, converters, skiprows, usecols, unpack, ndmin)</span>
-<span class="ansigreen">    738</span>                 fh <span class="ansiblue">=</span> iter<span class="ansiblue">(</span>open<span class="ansiblue">(</span>fname<span class="ansiblue">,</span> <span class="ansiblue">&apos;U&apos;</span><span class="ansiblue">)</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    739</span>             <span class="ansigreen">else</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 740</span><span class="ansired">                 </span>fh <span class="ansiblue">=</span> iter<span class="ansiblue">(</span>open<span class="ansiblue">(</span>fname<span class="ansiblue">)</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    741</span>         <span class="ansigreen">else</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">    742</span>             fh <span class="ansiblue">=</span> iter<span class="ansiblue">(</span>fname<span class="ansiblue">)</span><span class="ansiblue"></span>
-
-<span class="ansired">FileNotFoundError</span>: [Errno 2] No such file or directory: &apos;data/columns.txt&apos;</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -3308,16 +3297,17 @@ cat: data/columns.txt: No such file or directory
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-49-a9564ebc3289&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>date<span class="ansiblue"></span>
+<div class="output_area"><div class="prompt output_prompt">Out[49]:</div>
 
-<span class="ansired">NameError</span>: name &apos;date&apos; is not defined</pre>
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([ 1995.00274,  1995.00548,  1995.00821,  1995.01095,  1995.01369,
+        1995.01643,  1995.01916,  1995.0219 ,  1995.02464,  1995.02738,
+        1995.03012,  1995.03285,  1995.03559])
+</pre>
 </div>
+
 </div>
 
 </div>
@@ -3340,16 +3330,17 @@ cat: data/columns.txt: No such file or directory
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-50-6d5a4737eefc&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>temperature<span class="ansiblue"></span>
+<div class="output_area"><div class="prompt output_prompt">Out[50]:</div>
 
-<span class="ansired">NameError</span>: name &apos;temperature&apos; is not defined</pre>
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([  0.944444,  -1.61111 ,  -3.55556 ,  -9.83333 , -10.2222  ,
+        -9.5     , -10.2222  ,  -6.61111 ,  -2.94444 ,   1.55556 ,
+         0.277778,  -1.44444 ,  -3.61111 ])
+</pre>
 </div>
+
 </div>
 
 </div>
@@ -3795,7 +3786,7 @@ array([1, 0, 4, 0, 0, 3, 1, 5, 0, 0, 3, 4, 4, 3])
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="data/munich_temperatures_average_with_bad_data.txt">data/munich_temperatures_average_with_bad_data.txt</a> data file gives the temperature in Munich every day for several years:</p>
+<p>The <a href="data/vienna_daily_temperatures_with_bad_data.txt">data/vienna_daily_temperatures_with_bad_data.txt</a> data file gives the minimum and maximum temperature in Vienna every day for 20 years (from 1990 to 2010):</p>
 </div>
 </div>
 </div>
@@ -3804,7 +3795,7 @@ array([1, 0, 4, 0, 0, 3, 1, 5, 0, 0, 3, 4, 4, 3])
 <div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="o">!</span>head data/munich_temperatures_average_with_bad_data.txt  # shows the 10 first lines of a file
+<div class="highlight"><pre><span class="o">!</span>head data/vienna_daily_temperatures_with_bad_data.txt  # shows the 10 first lines of a file
 </pre></div>
 
 </div>
@@ -3818,16 +3809,16 @@ array([1, 0, 4, 0, 0, 3, 1, 5, 0, 0, 3, 4, 4, 3])
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-1995.00274 0.944444
-1995.00548 -1.61111
-1995.00821 -3.55556
-1995.01095 -9.83333
-1995.01369 -10.2222
-1995.01643 -9.5
-1995.01916 -10.2222
-1995.02190 -6.61111
-1995.02464 -2.94444
-1995.02738 1.55556
+  1990.00000    -0.5000    -2.1000
+  1990.00274     0.5000    -2.6000
+  1990.00548     0.5000    -2.4000
+  1990.00822     0.7000    -6.9000
+  1990.01096    -1.5000    -5.5000
+  1990.01370    -4.0000    -6.1000
+  1990.01644    -5.4000    -9.5000
+  1990.01918    -6.3000    -8.1000
+  1990.02192    -2.6000    -9.8000
+  1990.02466    -0.1000    -3.1000
 
 </pre>
 </div>
@@ -3842,7 +3833,7 @@ array([1, 0, 4, 0, 0, 3, 1, 5, 0, 0, 3, 4, 4, 3])
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Read in the file using <code>np.loadtxt</code>. The data contains bad values, which you can identify by looking at the minimum and maximum values of the array. Use masking to get rid of the bad temperature values.</p>
+<p>Read in the file using <code>np.loadtxt</code>. The data contains bad values, which can be -99 or 99. Use masking to get rid of the bad temperature values. What fraction of datapoints are bad?</p>
 </div>
 </div>
 </div>
