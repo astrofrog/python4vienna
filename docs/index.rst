@@ -24,23 +24,38 @@ Useful links
 * `Astropy <http://www.astropy.org>`_
 * More about the `IPython notebook <http://ipython.org/notebook.html>`_
 
-Notebooks
----------
+Monday
+------
 
-* :doc:`running`
-* `Numbers, Strings, and Lists <http://mpia.de/~robitaille/python4imprs/notebooks/01.%20Numbers,%20String,%20and%20Lists.html>`_
-* `Control Flow <http://mpia.de/~robitaille/python4imprs/notebooks/02.%20Control%20Flow.html>`_
-* `Functions and Modules <http://mpia.de/~robitaille/python4imprs/notebooks/03.%20Functions%20and%20Modules.html>`_
-* `Introduction to Numpy <http://mpia.de/~robitaille/python4imprs/notebooks/04.%20Introduction%20to%20Numpy.html>`_
-* `Introduction to Matplotlib <http://mpia.de/~robitaille/python4imprs/notebooks/05.%20Introduction%20to%20Matplotlib.html>`_
-* `Exercise Sheet 1 <http://mpia.de/~robitaille/python4imprs/notebooks/Exercise%20Sheet%201.html>`_
+Part 1
+^^^^^^
 
-.. * `Handling FITS files <http://mpia.de/~robitaille/python4imprs/notebooks/Handling%20FITS%20files.html>`_ [`Problem solutions <http://mpia.de/~robitaille/python4imprs/notebooks/Handling%20FITS%20files%20-%20Solutions.html>`_]
-.. * `Units and Quantities <http://mpia.de/~robitaille/python4imprs/notebooks/Unit%20Conversion.html>`_ [`Problem solutions <http://mpia.de/~robitaille/python4imprs/notebooks/Unit%20Conversion%20-%20Solutions.html>`_]
-.. * `Tables <http://mpia.de/~robitaille/python4imprs/notebooks/Tables.html>`_ [`Problem solutions <http://mpia.de/~robitaille/python4imprs/notebooks/Tables%20-%20Solutions.html>`_]
-.. * `Celestial Coordinates <http://mpia.de/~robitaille/python4imprs/notebooks/Celestial%20Coordinates.html>`_ [`Problem solutions <http://mpia.de/~robitaille/python4imprs/notebooks/Celestial%20Coordinates%20-%20Solutions.html>`_]
-.. * `Affiliated Package: Astroquery <http://mpia.de/~robitaille/python4imprs/notebooks/Affiliated%20Package%20-%20Astroquery.html>`_
-.. * `Affiliated Package: APLpy <http://mpia.de/~robitaille/python4imprs/notebooks/Affiliated%20Package%20-%20APLpy.html>`_
+* `What is Python? <_static/00.%20What%20is%20Python.html>`_
+* `Running Python code <_static/00.%20How%20to%20run%20Python%20code.html>`_
+* `Using the IPython notebook <_static/00.%20Using%20the%20IPython%20notebook.html>`_
+
+Part 2
+^^^^^^
+
+* `Numbers, Strings, and Lists <_static/01.%20Numbers,%20String,%20and%20Lists.html>`_
+* `Booleans, Tuples, and Dictionaries <_static/01.%20Booleans,%20Tuples,%20and%20Dictionaries.html>`_
+* `Control Flow <_static/02.%20Control%20Flow.html>`_
+* `Functions <_static/03.%20Functions.html>`_
+* `Modules <_static/03.%20Modules.html>`_
+
+Part 3
+^^^^^^
+
+* `Introduction to Numpy <_static/04.%20Introduction%20to%20Numpy.html>`_
+* `Introduction to Matplotlib <_static/05.%20Introduction%20to%20Matplotlib.html>`_
+* `Exercise Sheet 1 <_static/Exercise%20Sheet%201.html>`_
+
+.. * `Handling FITS files <_static/Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Handling%20FITS%20files%20-%20Solutions.html>`_]
+.. * `Units and Quantities <_static/Unit%20Conversion.html>`_ [`Problem solutions <_static/Unit%20Conversion%20-%20Solutions.html>`_]
+.. * `Tables <_static/Tables.html>`_ [`Problem solutions <_static/Tables%20-%20Solutions.html>`_]
+.. * `Celestial Coordinates <_static/Celestial%20Coordinates.html>`_ [`Problem solutions <_static/Celestial%20Coordinates%20-%20Solutions.html>`_]
+.. * `Affiliated Package: Astroquery <_static/Affiliated%20Package%20-%20Astroquery.html>`_
+.. * `Affiliated Package: APLpy <_static/Affiliated%20Package%20-%20APLpy.html>`_
 
 Getting help
 ------------
