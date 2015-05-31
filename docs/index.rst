@@ -1,16 +1,23 @@
-IMPRS Python Tutorial
-=====================
+Vienna Python/Astropy Workshop
+==============================
 
 .. note:: Please bring your laptop to the workshop!
 
-The purpose of this tutorial is to get you started with Python and learn about
-Packages you can use for your research.
+The purpose of this workshop is to get you started with Python and learn
+about Packages you can use for your research, such as Astropy.
+
+Installing Python
+-----------------
+
+If you don't already have a Scientific Python Installation, install the
+`Anaconda Python Distribution <https://store.continuum.io/cshop/anaconda/>`_
+(works for MacOS X, Linux, and Windows). I recommend downloading the Python
+3.4 version (you will still be able to set up Python 2 environments if
+needed).
 
 Useful links
 ------------
 
-* :doc:`emergency_install`
-* :doc:`running`
 * `Numpy <http://www.numpy.org>`_
 * `Scipy <http://www.scipy.org>`_
 * `Matplotlib <http://www.matplotlib.org>`_
@@ -20,6 +27,7 @@ Useful links
 Notebooks
 ---------
 
+* :doc:`running`
 * `Numbers, Strings, and Lists <http://mpia.de/~robitaille/python4imprs/notebooks/01.%20Numbers,%20String,%20and%20Lists.html>`_
 * `Control Flow <http://mpia.de/~robitaille/python4imprs/notebooks/02.%20Control%20Flow.html>`_
 * `Functions and Modules <http://mpia.de/~robitaille/python4imprs/notebooks/03.%20Functions%20and%20Modules.html>`_
