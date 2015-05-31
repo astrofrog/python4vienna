@@ -68,8 +68,17 @@ Part 3
 Getting help
 ------------
 
+General Python help
+^^^^^^^^^^^^^^^^^^^
+
+* `Google <http://www.google.com>`_!
+* `StackOverflow <http://stackoverflow.com>`_ - use tag #python
+
+Astropy help
+^^^^^^^^^^^^
+
 * `astropy mailing list <http://mail.scipy.org/mailman/listinfo/astropy>`_ (not just Astropy-related question, any astronomy & python questions)
-* `stackoverflow <http://stackoverflow.com>`_ - use tag #astropy
+* `StackOverflow <http://stackoverflow.com>`_ - use tag #astropy
 * `IRC <http://webchat.freenode.net/?channels=astropy>`_
 * `Twitter <https://twitter.com/astropy>`_
 * `Private feedback <mailto:astropy-feedback@googlegroups.com>`_
