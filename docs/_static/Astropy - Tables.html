@@ -1720,7 +1720,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
 </pre></div>
 
 </div>
@@ -1763,7 +1764,7 @@ div#notebook {
 
 <div class="output_html rendered_html output_subarea output_pyout">
 &lt;Table masked=False length=3&gt;
-<table id="table4432992464">
+<table id="table4423358784">
 <thead><tr><th>name</th><th>flux</th></tr></thead>
 <thead><tr><th>str256</th><th>float64</th></tr></thead>
 <tr><td>source 1</td><td>1.2</td></tr>
@@ -1832,7 +1833,7 @@ source 3  3.1
 
 <div class="output_html rendered_html output_subarea output_pyout">
 &lt;Table masked=False length=3&gt;
-<table id="table4432992464">
+<table id="table4423358784">
 <thead><tr><th>name</th><th>flux</th><th>size</th></tr></thead>
 <thead><tr><th>str256</th><th>float64</th><th>int64</th></tr></thead>
 <tr><td>source 1</td><td>1.2</td><td>1</td></tr>
@@ -1896,16 +1897,15 @@ source 3  3.1
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-7-15272fc557bf&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>np<span class="ansiblue">.</span>array<span class="ansiblue">(</span>t1<span class="ansiblue">[</span><span class="ansiblue">&apos;size&apos;</span><span class="ansiblue">]</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 
-<span class="ansired">NameError</span>: name &apos;np&apos; is not defined</pre>
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([1, 5, 4])
+</pre>
 </div>
+
 </div>
 
 </div>
@@ -1948,6 +1948,222 @@ source 3  3.1
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Iterating-over-tables">Iterating over tables<a class="anchor-link" href="#Iterating-over-tables">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is possible to iterate over rows or over columns. To iterate over rows, simply iterate over the table itself:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">t1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+&lt;Row 0 of table
+ values=(&apos;source 1&apos;, 1.2, 1)
+ dtype=[(&apos;name&apos;, &apos;&lt;U8&apos;), (&apos;flux&apos;, &apos;&lt;f8&apos;), (&apos;size&apos;, &apos;&lt;i8&apos;)]&gt;
+&lt;Row 1 of table
+ values=(&apos;source 2&apos;, 2.2, 5)
+ dtype=[(&apos;name&apos;, &apos;&lt;U8&apos;), (&apos;flux&apos;, &apos;&lt;f8&apos;), (&apos;size&apos;, &apos;&lt;i8&apos;)]&gt;
+&lt;Row 2 of table
+ values=(&apos;source 3&apos;, 3.1, 4)
+ dtype=[(&apos;name&apos;, &apos;&lt;U8&apos;), (&apos;flux&apos;, &apos;&lt;f8&apos;), (&apos;size&apos;, &apos;&lt;i8&apos;)]&gt;
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Rows can act like dictionaries, so you can access specific columns from a row:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">t1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+source 1
+source 2
+source 3
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also access rows by accessing a numerical item in the table:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">row</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Iterating over columns is also easy:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">t1</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">column</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+  name  
+--------
+source 1
+source 2
+source 3
+flux
+----
+ 1.2
+ 2.2
+ 3.1
+size
+----
+   1
+   5
+   4
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Accessing specific rows from a column object can also be done with the item notation:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">colname</span> <span class="ow">in</span> <span class="n">t1</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">column</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">column</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+source 1
+1.2
+1
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Joining-tables">Joining tables<a class="anchor-link" href="#Joining-tables">&#182;</a></h2>
 </div>
 </div>
@@ -1955,7 +2171,7 @@ source 3  3.1
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">join</span>
@@ -1968,7 +2184,7 @@ source 3  3.1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t2</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
@@ -1983,7 +2199,7 @@ source 3  3.1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t3</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">join_type</span><span class="o">=</span><span class="s">&#39;outer&#39;</span><span class="p">)</span>
@@ -1998,11 +2214,11 @@ source 3  3.1
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 &lt;Table masked=True length=3&gt;
-<table id="table4433078704">
+<table id="table4423438744">
 <thead><tr><th>name</th><th>flux</th><th>size</th><th>flux2</th></tr></thead>
 <thead><tr><th>str256</th><th>float64</th><th>int64</th><th>int64</th></tr></thead>
 <tr><td>source 1</td><td>1.2</td><td>1</td><td>1</td></tr>
@@ -2019,7 +2235,7 @@ source 3  3.1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">t3</span><span class="p">[</span><span class="s">&#39;flux2&#39;</span><span class="p">])</span>
@@ -2033,16 +2249,199 @@ source 3  3.1
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-12-90ce5f427194&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>np<span class="ansiblue">.</span>mean<span class="ansiblue">(</span>t3<span class="ansiblue">[</span><span class="ansiblue">&apos;flux2&apos;</span><span class="ansiblue">]</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
 
-<span class="ansired">NameError</span>: name &apos;np&apos; is not defined</pre>
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+5.0
+</pre>
 </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Grouping-and-Aggregation">Grouping and Aggregation<a class="anchor-link" href="#Grouping-and-Aggregation">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&quot;&quot;&quot;name    obs_date    mag_b  mag_v</span>
+<span class="s">                    M31     2012-01-02  17.0   17.5</span>
+<span class="s">                    M31     2012-01-02  17.1   17.4</span>
+<span class="s">                    M101    2012-01-02  15.1   13.5</span>
+<span class="s">                    M82     2012-02-14  16.2   14.5</span>
+<span class="s">                    M31     2012-02-14  16.9   17.3</span>
+<span class="s">                    M82     2012-02-14  15.2   15.5</span>
+<span class="s">                    M101    2012-02-14  15.0   13.6</span>
+<span class="s">                    M82     2012-03-26  15.7   16.5</span>
+<span class="s">                    M101    2012-03-26  15.1   13.5</span>
+<span class="s">                    M101    2012-03-26  14.8   14.3</span>
+<span class="s">                    &quot;&quot;&quot;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;ascii&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">obs_by_name</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">obs_by_name</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+&lt;Table masked=False length=10&gt;
+<table id="table4423491824">
+<thead><tr><th>name</th><th>obs_date</th><th>mag_b</th><th>mag_v</th></tr></thead>
+<thead><tr><th>str128</th><th>str320</th><th>float64</th><th>float64</th></tr></thead>
+<tr><td>M101</td><td>2012-01-02</td><td>15.1</td><td>13.5</td></tr>
+<tr><td>M101</td><td>2012-02-14</td><td>15.0</td><td>13.6</td></tr>
+<tr><td>M101</td><td>2012-03-26</td><td>15.1</td><td>13.5</td></tr>
+<tr><td>M101</td><td>2012-03-26</td><td>14.8</td><td>14.3</td></tr>
+<tr><td>M31</td><td>2012-01-02</td><td>17.0</td><td>17.5</td></tr>
+<tr><td>M31</td><td>2012-01-02</td><td>17.1</td><td>17.4</td></tr>
+<tr><td>M31</td><td>2012-02-14</td><td>16.9</td><td>17.3</td></tr>
+<tr><td>M82</td><td>2012-02-14</td><td>16.2</td><td>14.5</td></tr>
+<tr><td>M82</td><td>2012-02-14</td><td>15.2</td><td>15.5</td></tr>
+<tr><td>M82</td><td>2012-03-26</td><td>15.7</td><td>16.5</td></tr>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">obs_by_name</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+name  obs_date  mag_b mag_v
+---- ---------- ----- -----
+M101 2012-01-02  15.1  13.5
+M101 2012-02-14  15.0  13.6
+M101 2012-03-26  15.1  13.5
+M101 2012-03-26  14.8  14.3
+
+name  obs_date  mag_b mag_v
+---- ---------- ----- -----
+ M31 2012-01-02  17.0  17.5
+ M31 2012-01-02  17.1  17.4
+ M31 2012-02-14  16.9  17.3
+
+name  obs_date  mag_b mag_v
+---- ---------- ----- -----
+ M82 2012-02-14  16.2  14.5
+ M82 2012-02-14  15.2  15.5
+ M82 2012-03-26  15.7  16.5
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">obs_by_name</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+WARNING: Cannot aggregate column &apos;obs_date&apos; with type &apos;&lt;U10&apos; [astropy.table.groups]
+WARNING:astropy:Cannot aggregate column &apos;obs_date&apos; with type &apos;&lt;U10&apos;
+
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+&lt;Table masked=False length=3&gt;
+<table id="table4423438520">
+<thead><tr><th>name</th><th>mag_b</th><th>mag_v</th></tr></thead>
+<thead><tr><th>str128</th><th>float64</th><th>float64</th></tr></thead>
+<tr><td>M101</td><td>15.0</td><td>13.725</td></tr>
+<tr><td>M31</td><td>17.0</td><td>17.4</td></tr>
+<tr><td>M82</td><td>15.7</td><td>15.5</td></tr>
+</table>
+</div>
+
 </div>
 
 </div>
@@ -2061,7 +2460,7 @@ source 3  3.1
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t4</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">masked</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2076,7 +2475,7 @@ source 3  3.1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t4</span><span class="p">[</span><span class="s">&#39;flux&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
@@ -2091,11 +2490,11 @@ source 3  3.1
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 &lt;Table masked=True length=3&gt;
-<table id="table4432991120">
+<table id="table4423441880">
 <thead><tr><th>name</th><th>flux</th></tr></thead>
 <thead><tr><th>str256</th><th>float64</th></tr></thead>
 <tr><td>source 1</td><td>--</td></tr>
@@ -2122,7 +2521,7 @@ source 3  3.1
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t3</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;test.fits&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2135,7 +2534,7 @@ source 3  3.1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t3</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;test.vot&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;votable&#39;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2184,7 +2583,7 @@ WARNING:astropy:W31: ?:?:?: W31: NaN given in an integral field without a specif
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t4</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&#39;data/2mass.tbl&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;ascii.ipac&#39;</span><span class="p">)</span>
@@ -2197,7 +2596,7 @@ WARNING:astropy:W31: ?:?:?: W31: NaN given in an integral field without a specif
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">t4</span>
@@ -2211,11 +2610,11 @@ WARNING:astropy:W31: ?:?:?: W31: NaN given in an integral field without a specif
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 &lt;Table masked=True length=929&gt;
-<table id="table4435202176">
+<table id="table4428066944">
 <thead><tr><th>ra</th><th>dec</th><th>clon</th><th>clat</th><th>err_maj</th><th>err_min</th><th>err_ang</th><th>designation</th><th>j_m</th><th>j_cmsig</th><th>j_msigcom</th><th>j_snr</th><th>h_m</th><th>h_cmsig</th><th>h_msigcom</th><th>h_snr</th><th>k_m</th><th>k_cmsig</th><th>k_msigcom</th><th>k_snr</th><th>ph_qual</th><th>rd_flg</th><th>bl_flg</th><th>cc_flg</th><th>ndet</th><th>gal_contam</th><th>mp_flg</th><th>dist</th><th>angle</th><th>j_h</th><th>h_k</th><th>j_k</th></tr></thead>
 <thead><tr><th>deg</th><th>deg</th><th></th><th></th><th>arcsec</th><th>arcsec</th><th>deg</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead>
 <thead><tr><th>float64</th><th>float64</th><th>str384</th><th>str416</th><th>float64</th><th>float64</th><th>int64</th><th>str512</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>str96</th><th>str96</th><th>str96</th><th>str96</th><th>str192</th><th>int64</th><th>int64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th></tr></thead>
