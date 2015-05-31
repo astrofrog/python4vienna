@@ -45,14 +45,13 @@ Part 2
 * `Booleans, Tuples, and Dictionaries <_static/01.%20Booleans,%20Tuples,%20and%20Dictionaries.html>`_
 * `Control Flow <_static/02.%20Control%20Flow.html>`_
 * `Functions <_static/03.%20Functions.html>`_
-* `Modules <_static/03.%20Modules.html>`_
 
 Part 3
 ^^^^^^
 
+* `Modules <_static/03.%20Modules.html>`_
 * `Introduction to Numpy <_static/04.%20Introduction%20to%20Numpy.html>`_
 * `Introduction to Matplotlib <_static/05.%20Introduction%20to%20Matplotlib.html>`_
-* `Exercise Sheet 1 <_static/Exercise%20Sheet%201.html>`_
 
 .. * `Handling FITS files <_static/Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Handling%20FITS%20files%20-%20Solutions.html>`_]
 .. * `Units and Quantities <_static/Unit%20Conversion.html>`_ [`Problem solutions <_static/Unit%20Conversion%20-%20Solutions.html>`_]
