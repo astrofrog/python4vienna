@@ -31,7 +31,7 @@ Useful links
 Monday: Getting started with Python
 -----------------------------------
 
-Download the notebooks from `here <_static/python4vienna_part1.tgz>`__ before starting.
+Download the notebooks from `here <_static/python4vienna_part1.tgz>`__ before starting (Windows users: use `this <_static/python4vienna_part1.zip>`__ instead).
 
 Part 1
 ^^^^^^
