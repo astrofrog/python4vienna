@@ -27,6 +27,7 @@ Useful links
 * `Matplotlib <http://www.matplotlib.org>`_
 * `Astropy <http://www.astropy.org>`_
 * More about the `IPython notebook <http://ipython.org/notebook.html>`_
+* UTF-8 error on MacOS X: see `here <http://docs.astropy.org/en/stable/known_issues.html#locale-errors-in-macos-x-and-linux>`__ for how to fix it.
 
 Monday: Getting started with Python
 -----------------------------------
