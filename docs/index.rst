@@ -56,6 +56,8 @@ Part 3
 * `Introduction to Numpy <_static/04.%20Introduction%20to%20Numpy.html>`_
 * `Introduction to Matplotlib <_static/05.%20Introduction%20to%20Matplotlib.html>`_
 
+You can now find the Exercise Solutions `here <_static/Exercise%20Solutions.html>`__.
+
 Tuesday: Introduction to Astropy
 --------------------------------
 
