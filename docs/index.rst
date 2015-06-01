@@ -63,6 +63,7 @@ Tuesday: Introduction to Astropy
 * `Tables <_static/Astropy%20-%20Tables.html>`_ [`Problem solutions <_static/Astropy%20-%20Tables%20-%20Solutions.html>`_]
 * `Celestial Coordinates <_static/Astropy%20-%20Celestial%20Coordinates.html>`_ [`Problem solutions <_static/Astropy%20-%20Celestial%20Coordinates%20-%20Solutions.html>`_]
 * `Handling FITS files <_static/Astropy%20-%20Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Astropy%20-%20Handling%20FITS%20files%20-%20Solutions.html>`_]
+* `Modeling <_static/Astropy%20-%20Modeling.html>`_ [`Problem solutions <_static/Astropy%20-%20Modeling%20-%20Solutions.html>`_]
 
 
 .. * `Affiliated Package: Astroquery <_static/Affiliated%20Package%20-%20Astroquery.html>`_
