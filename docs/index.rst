@@ -75,6 +75,7 @@ General Python help
 
 * `Google <http://www.google.com>`_!
 * `StackOverflow <http://stackoverflow.com>`_ - use tag #python
+* `Facebook Python users in Astronomy group <https://www.facebook.com/groups/astropython/>`_
 
 Astropy help
 ^^^^^^^^^^^^
