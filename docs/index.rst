@@ -61,6 +61,8 @@ You can now find the Exercise Solutions `here <_static/Exercise%20Solutions.html
 Tuesday: Introduction to Astropy
 --------------------------------
 
+Download the notebooks from `here <_static/python4vienna_part2.tgz>`__ before starting (Windows users: use `this <_static/python4vienna_part2.zip>`__ instead).
+
 * `Units and Quantities <_static/Astropy%20-%20Unit%20Conversion.html>`_ [`Problem solutions <_static/Astropy%20-%20Unit%20Conversion%20-%20Solutions.html>`_]
 * `Tables <_static/Astropy%20-%20Tables.html>`_ [`Problem solutions <_static/Astropy%20-%20Tables%20-%20Solutions.html>`_]
 * `Celestial Coordinates <_static/Astropy%20-%20Celestial%20Coordinates.html>`_ [`Problem solutions <_static/Astropy%20-%20Celestial%20Coordinates%20-%20Solutions.html>`_]
