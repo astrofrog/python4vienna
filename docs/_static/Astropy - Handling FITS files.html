@@ -2071,7 +2071,7 @@ one of the slices in photon energy:</p>
 
 <div class="output_text output_subarea output_pyout">
 <pre>
-&lt;matplotlib.image.AxesImage at 0x10897e828&gt;
+&lt;matplotlib.image.AxesImage at 0x107fcac18&gt;
 </pre>
 </div>
 
@@ -2980,6 +2980,54 @@ array([ -7.81549788, -41.99647903,  62.33962631, ..., -30.62516785,
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>However, as we saw on the notes on the Table class, it is often easier to simply read in FITS tables using <code>Table.read</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&#39;data/gll_psc_v08.fit&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+WARNING: hdu= was not specified but multiple tables are present, reading in first available table (hdu=1) [astropy.io.fits.connect]
+WARNING:astropy:hdu= was not specified but multiple tables are present, reading in first available table (hdu=1)
+WARNING: UnitsWarning: &apos;photon/cm**2/MeV/s&apos; contains multiple slashes, which is discouraged by the FITS standard [astropy.units.format.generic]
+WARNING:astropy:UnitsWarning: &apos;photon/cm**2/MeV/s&apos; contains multiple slashes, which is discouraged by the FITS standard
+WARNING: UnitsWarning: &apos;photon/cm**2/s&apos; contains multiple slashes, which is discouraged by the FITS standard [astropy.units.format.generic]
+WARNING:astropy:UnitsWarning: &apos;photon/cm**2/s&apos; contains multiple slashes, which is discouraged by the FITS standard
+WARNING: UnitsWarning: The unit &apos;erg&apos; has been deprecated in the FITS standard. Suggested: cm2 g s-2. [astropy.units.format.utils]
+WARNING:astropy:UnitsWarning: The unit &apos;erg&apos; has been deprecated in the FITS standard. Suggested: cm2 g s-2.
+WARNING: UnitsWarning: &apos;erg/cm**2/s&apos; contains multiple slashes, which is discouraged by the FITS standard [astropy.units.format.generic]
+WARNING:astropy:UnitsWarning: &apos;erg/cm**2/s&apos; contains multiple slashes, which is discouraged by the FITS standard
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Practical-Exercises">Practical Exercises<a class="anchor-link" href="#Practical-Exercises">&#182;</a></h2>
 </div>
 </div>
@@ -3023,7 +3071,7 @@ over the original file!</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Read in the LAT Point Source Catalog and make a scatter plot of the
+<p>Read in the LAT Point Source Catalog (<a href="data/gll_psc_v08.fit">data/gll_psc_v08.fit</a>) and make a scatter plot of the
 Galactic Coordinates of the sources (complete with axis labels). Bonus
 points if you can make the plot go between -180 and 180 instead of 0 and
 360 degrees. Note that the Point Source Catalog contains the Galactic

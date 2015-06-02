@@ -69,9 +69,15 @@ Download the notebooks from `here <_static/python4vienna_part2.tgz>`__ before st
 * `Handling FITS files <_static/Astropy%20-%20Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Astropy%20-%20Handling%20FITS%20files%20-%20Solutions.html>`_]
 * `Modeling <_static/Astropy%20-%20Modeling.html>`_ [`Problem solutions <_static/Astropy%20-%20Modeling%20-%20Solutions.html>`_]
 
+Wednesday: Advanced Astropy and affiliated packages
+---------------------------------------------------
 
-.. * `Affiliated Package: Astroquery <_static/Affiliated%20Package%20-%20Astroquery.html>`_
-.. * `Affiliated Package: APLpy <_static/Affiliated%20Package%20-%20APLpy.html>`_
+* `Handling FITS files <_static/Astropy%20-%20Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Astropy%20-%20Handling%20FITS%20files%20-%20Solutions.html>`_]
+* `WCS Transformations <_static/Astropy%20-%20WCS%20Transformations.html>`_ [`Problem solutions <_static/Astropy%20-%20WCS%20Transformations%20-%20Solutions.html>`_]
+* `Astropy Affiliated Packages: APLpy and WCSAxes <_static/Affiliated%20Package%20-%20APLpy%20and%20WCSAxes.html>`_
+* `Astropy Affiliated Packages: Astroquery <_static/Affiliated%20Package%20-%20Astroquery.html>`_
+* `Astropy Affiliated Packages: Image reprojection <_static/Affiliated%20Package%20-%20Image%20reprojection.html>`_
+
 
 Getting help
 ------------

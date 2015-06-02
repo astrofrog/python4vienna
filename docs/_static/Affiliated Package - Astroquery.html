@@ -1680,8 +1680,18 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="astroquery">Astroquery</h1>
-<p><a href="http://www.astropy.org/astroquery/">Astroquery</a> is an Astropy-affiliated package that contains a collection of tools to access online Astronomical data. The main supported interfaces are:</p>
+<h1 id="Affiliated-Package:-Astroquery">Affiliated Package: Astroquery<a class="anchor-link" href="#Affiliated-Package:-Astroquery">&#182;</a></h1>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="http://www.astropy.org/astroquery/">Astroquery</a> is an Astropy-affiliated package that contains a collection of tools to access online Astronomical data.</p>
+<p>The following modules have been completed using a common API:</p>
 <ul>
 <li>SIMBAD Queries (<code>astroquery.simbad</code>)</li>
 <li>VizieR Queries (<code>astroquery.vizier</code>)</li>
@@ -1696,8 +1706,43 @@ div#notebook {
 <li>NIST Queries (<code>astroquery.nist</code>)</li>
 <li>NVAS Queries (<code>astroquery.nvas</code>)</li>
 <li>GAMA Queries (<code>astroquery.gama</code>)</li>
+<li>ESO Queries (<code>astroquery.eso</code>)</li>
+<li>xMatch Queries (<code>astroquery.xmatch</code>)</li>
+<li>Atomic Line List (<code>astroquery.atomic</code>)</li>
+<li>ALMA Queries (<code>astroquery.alma</code>)</li>
+<li>Skyview Queries (<code>astroquery.skyview</code>)</li>
+<li>NASA ADS Queries (<code>astroquery.nasa_ads</code>)</li>
+<li>HEASARC Queries (<code>astroquery.heasarc</code>)</li>
 </ul>
-<h2 id="simbad">SIMBAD</h2>
+<p>These others are functional, but do not follow a common &amp; consistent API:</p>
+<ul>
+<li>Fermi Queries (<code>astroquery.fermi</code>)</li>
+<li>SDSS Queries (<code>astroquery.sdss</code>)</li>
+<li>ALFALFA Queries (<code>astroquery.alfalfa</code>)</li>
+<li>Spitzer Heritage Archive (<code>astroquery.sha</code>)</li>
+<li>LAMDA Queries (<code>astroquery.lamda</code>)</li>
+<li>OGLE Queries (<code>astroquery.ogle</code>)</li>
+<li>Open Exoplanet Catalogue(<code>astroquery.open_exoplanet_catalogue</code>)</li>
+<li>CosmoSim Queries (<code>astroquery.cosmosim</code>)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SIMBAD">SIMBAD<a class="anchor-link" href="#SIMBAD">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>As an example, let&#39;s run a SIMBAD query:</p>
 </div>
 </div>
@@ -1712,26 +1757,6 @@ div#notebook {
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">ImportError</span>                               Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-1-d1a42242c417&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      1</span> <span class="ansigreen">from</span> astropy <span class="ansigreen">import</span> units <span class="ansigreen">as</span> u<span class="ansiblue"></span>
-<span class="ansigreen">----&gt; 2</span><span class="ansired"> </span><span class="ansigreen">from</span> astroquery<span class="ansiblue">.</span>simbad <span class="ansigreen">import</span> Simbad<span class="ansiblue"></span>
-
-<span class="ansired">ImportError</span>: No module named &apos;astroquery&apos;</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1756,11 +1781,88 @@ div#notebook {
 <div class="output_subarea output_text output_pyerr">
 <pre>
 <span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
+<span class="ansired">ValueError</span>                                Traceback (most recent call last)
 <span class="ansigreen">&lt;ipython-input-2-1f2629c9d67b&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
 <span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>r <span class="ansiblue">=</span> Simbad<span class="ansiblue">.</span>query_region<span class="ansiblue">(</span><span class="ansiblue">&apos;m42&apos;</span><span class="ansiblue">,</span> radius<span class="ansiblue">=</span><span class="ansicyan">3.</span> <span class="ansiblue">*</span> u<span class="ansiblue">.</span>arcmin<span class="ansiblue">)</span><span class="ansiblue"></span>
 
-<span class="ansired">NameError</span>: name &apos;Simbad&apos; is not defined</pre>
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">query_region</span><span class="ansiblue">(self, coordinates, radius, equinox, epoch, verbose)</span>
+<span class="ansigreen">    442</span>         <span class="ansired"># coordinates</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">    443</span>         result = self.query_region_async(coordinates, radius=radius,
+<span class="ansigreen">--&gt; 444</span><span class="ansired">                                         equinox=equinox, epoch=epoch)
+</span><span class="ansigreen">    445</span>         <span class="ansigreen">return</span> self<span class="ansiblue">.</span>_parse_result<span class="ansiblue">(</span>result<span class="ansiblue">,</span> SimbadVOTableResult<span class="ansiblue">,</span> verbose<span class="ansiblue">=</span>verbose<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    446</span> <span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">query_region_async</span><span class="ansiblue">(self, coordinates, radius, equinox, epoch)</span>
+<span class="ansigreen">    472</span>         request_payload = self._args_to_payload(coordinates, radius=radius,
+<span class="ansigreen">    473</span>                                                 equinox<span class="ansiblue">=</span>equinox<span class="ansiblue">,</span> epoch<span class="ansiblue">=</span>epoch<span class="ansiblue">,</span><span class="ansiblue"></span>
+<span class="ansigreen">--&gt; 474</span><span class="ansired">                                                 caller=&apos;query_region_async&apos;)
+</span><span class="ansigreen">    475</span>         response = commons.send_request(self.SIMBAD_URL, request_payload,
+<span class="ansigreen">    476</span>                                         self.TIMEOUT)
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">wrapper</span><span class="ansiblue">(*args, **kwargs)</span>
+<span class="ansigreen">     38</span>                 raise ValueError(&quot;Epoch must be specified as [J|B]&lt;epoch&gt;.\n&quot;
+<span class="ansigreen">     39</span>                                  &quot;Example: epoch=&apos;J2000&apos;&quot;)
+<span class="ansigreen">---&gt; 40</span><span class="ansired">         </span><span class="ansigreen">return</span> func<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">     41</span>     <span class="ansigreen">return</span> wrapper<span class="ansiblue"></span>
+<span class="ansigreen">     42</span> <span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">wrapper</span><span class="ansiblue">(*args, **kwargs)</span>
+<span class="ansigreen">     54</span>             <span class="ansigreen">except</span> ValueError<span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">     55</span>                 <span class="ansigreen">raise</span> ValueError<span class="ansiblue">(</span><span class="ansiblue">&quot;Equinox must be a number&quot;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">---&gt; 56</span><span class="ansired">         </span><span class="ansigreen">return</span> func<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">     57</span>     <span class="ansigreen">return</span> wrapper<span class="ansiblue"></span>
+<span class="ansigreen">     58</span> <span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">_args_to_payload</span><span class="ansiblue">(self, *args, **kwargs)</span>
+<span class="ansigreen">    681</span>             coordinates <span class="ansiblue">=</span> args<span class="ansiblue">[</span><span class="ansicyan">0</span><span class="ansiblue">]</span><span class="ansiblue"></span>
+<span class="ansigreen">    682</span>             args <span class="ansiblue">=</span> args<span class="ansiblue">[</span><span class="ansicyan">1</span><span class="ansiblue">:</span><span class="ansiblue">]</span><span class="ansiblue"></span>
+<span class="ansigreen">--&gt; 683</span><span class="ansired">             </span>ra<span class="ansiblue">,</span> dec<span class="ansiblue">,</span> frame <span class="ansiblue">=</span> _parse_coordinates<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    684</span>             args <span class="ansiblue">=</span> <span class="ansiblue">[</span>ra<span class="ansiblue">,</span> dec<span class="ansiblue">]</span><span class="ansiblue"></span>
+<span class="ansigreen">    685</span>             kwargs<span class="ansiblue">[</span><span class="ansiblue">&apos;frame&apos;</span><span class="ansiblue">]</span> <span class="ansiblue">=</span> frame<span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">_parse_coordinates</span><span class="ansiblue">(coordinates)</span>
+<span class="ansigreen">    748</span> <span class="ansigreen">def</span> _parse_coordinates<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">    749</span>     <span class="ansigreen">try</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">--&gt; 750</span><span class="ansired">         </span>c <span class="ansiblue">=</span> commons<span class="ansiblue">.</span>parse_coordinates<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    751</span>         <span class="ansired"># now c has some subclass of astropy.coordinate</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">    752</span>         <span class="ansired"># get ra, dec and frame</span><span class="ansiblue"></span><span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/utils/commons.py</span> in <span class="ansicyan">parse_coordinates</span><span class="ansiblue">(coordinates)</span>
+<span class="ansigreen">    186</span>         <span class="ansigreen">except</span> coord<span class="ansiblue">.</span>name_resolve<span class="ansiblue">.</span>NameResolveError<span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">    187</span>             <span class="ansigreen">try</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">--&gt; 188</span><span class="ansired">                 </span>c <span class="ansiblue">=</span> ICRSCoordGenerator<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    189</span>                 warnings<span class="ansiblue">.</span>warn<span class="ansiblue">(</span><span class="ansiblue">&quot;Coordinate string is being interpreted as an ICRS coordinate.&quot;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    190</span>             <span class="ansigreen">except</span> u<span class="ansiblue">.</span>UnitsError<span class="ansiblue">:</span><span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/utils/commons.py</span> in <span class="ansicyan">&lt;lambda&gt;</span><span class="ansiblue">(*args, **kwargs)</span>
+<span class="ansigreen">     22</span> <span class="ansigreen">try</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">     23</span>     <span class="ansigreen">from</span> astropy<span class="ansiblue">.</span>coordinates <span class="ansigreen">import</span> BaseCoordinateFrame<span class="ansiblue"></span>
+<span class="ansigreen">---&gt; 24</span><span class="ansired">     </span>ICRSCoordGenerator <span class="ansiblue">=</span> <span class="ansigreen">lambda</span> <span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">:</span> coord<span class="ansiblue">.</span>SkyCoord<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> frame<span class="ansiblue">=</span><span class="ansiblue">&apos;icrs&apos;</span><span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">     25</span>     GalacticCoordGenerator <span class="ansiblue">=</span> <span class="ansigreen">lambda</span> <span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">:</span> coord<span class="ansiblue">.</span>SkyCoord<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> frame<span class="ansiblue">=</span><span class="ansiblue">&apos;galactic&apos;</span><span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">     26</span>     FK5CoordGenerator <span class="ansiblue">=</span> <span class="ansigreen">lambda</span> <span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">:</span> coord<span class="ansiblue">.</span>SkyCoord<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> frame<span class="ansiblue">=</span><span class="ansiblue">&apos;fk5&apos;</span><span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astropy/coordinates/sky_coordinate.py</span> in <span class="ansicyan">__init__</span><span class="ansiblue">(self, *args, **kwargs)</span>
+<span class="ansigreen">    151</span>         <span class="ansired"># creating the internal self._sky_coord_frame object</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">    152</span>         args <span class="ansiblue">=</span> list<span class="ansiblue">(</span>args<span class="ansiblue">)</span>  <span class="ansired"># Make it mutable</span><span class="ansiblue"></span>
+<span class="ansigreen">--&gt; 153</span><span class="ansired">         </span>kwargs <span class="ansiblue">=</span> self<span class="ansiblue">.</span>_parse_inputs<span class="ansiblue">(</span>args<span class="ansiblue">,</span> kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    154</span> <span class="ansiblue"></span>
+<span class="ansigreen">    155</span>         <span class="ansired"># Set internal versions of object state attributes</span><span class="ansiblue"></span><span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astropy/coordinates/sky_coordinate.py</span> in <span class="ansicyan">_parse_inputs</span><span class="ansiblue">(self, args, kwargs)</span>
+<span class="ansigreen">    243</span>                 <span class="ansired"># along with any frame attributes like equinox or obstime which</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">    244</span>                 <span class="ansired"># were explicitly specified in the coordinate object (i.e. non-default).</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">--&gt; 245</span><span class="ansired">                 </span>coord_kwargs <span class="ansiblue">=</span> _parse_coordinate_arg<span class="ansiblue">(</span>args<span class="ansiblue">[</span><span class="ansicyan">0</span><span class="ansiblue">]</span><span class="ansiblue">,</span> frame<span class="ansiblue">,</span> units<span class="ansiblue">,</span> kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    246</span> <span class="ansiblue"></span>
+<span class="ansigreen">    247</span>             <span class="ansigreen">elif</span> len<span class="ansiblue">(</span>args<span class="ansiblue">)</span> <span class="ansiblue">&lt;=</span> <span class="ansicyan">3</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+
+<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astropy/coordinates/sky_coordinate.py</span> in <span class="ansicyan">_parse_coordinate_arg</span><span class="ansiblue">(coords, frame, units, init_kwargs)</span>
+<span class="ansigreen">   1391</span>     <span class="ansigreen">except</span> Exception <span class="ansigreen">as</span> err<span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">   1392</span>         raise ValueError(&apos;Cannot parse first argument data &quot;{0}&quot; for attribute &apos;
+<span class="ansigreen">-&gt; 1393</span><span class="ansired">                          &apos;{1}&apos;.format(value, frame_attr_name), err)
+</span><span class="ansigreen">   1394</span>     <span class="ansigreen">return</span> valid_kwargs<span class="ansiblue"></span>
+<span class="ansigreen">   1395</span> <span class="ansiblue"></span>
+
+<span class="ansired">ValueError</span>: (&apos;Cannot parse first argument data &quot;m42&quot; for attribute ra&apos;, ValueError(&quot;Syntax error parsing angle &apos;m42&apos;&quot;,))</pre>
 </div>
 </div>
 
@@ -1837,10 +1939,11 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="wise">WISE</h2>
+<h2 id="WISE">WISE<a class="anchor-link" href="#WISE">&#182;</a></h2>
 </div>
 </div>
 </div>
+
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
@@ -1850,25 +1953,6 @@ div#notebook {
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">ImportError</span>                               Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-5-851c59fd15d0&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span><span class="ansigreen">from</span> astroquery<span class="ansiblue">.</span>irsa <span class="ansigreen">import</span> Irsa<span class="ansiblue"></span>
-
-<span class="ansired">ImportError</span>: No module named &apos;astroquery&apos;</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1889,21 +1973,61 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-6-6fbd04d8313b&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>Irsa<span class="ansiblue">.</span>query_region<span class="ansiblue">(</span><span class="ansiblue">&apos;m42&apos;</span><span class="ansiblue">,</span> catalog<span class="ansiblue">=</span><span class="ansiblue">&apos;wise_allsky_4band_p3as_psd&apos;</span><span class="ansiblue">,</span> radius<span class="ansiblue">=</span><span class="ansicyan">10</span><span class="ansiblue">*</span>u<span class="ansiblue">.</span>arcmin<span class="ansiblue">)</span><span class="ansiblue"></span>
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
-<span class="ansired">NameError</span>: name &apos;Irsa&apos; is not defined</pre>
+<div class="output_html rendered_html output_subarea output_pyout">
+&lt;Table masked=True length=500&gt;
+<table id="table4452424168">
+<thead><tr><th>designation</th><th>ra</th><th>dec</th><th>clon</th><th>clat</th><th>sigra</th><th>sigdec</th><th>sigradec</th><th>w1mpro</th><th>w1sigmpro</th><th>w1snr</th><th>w1rchi2</th><th>w2mpro</th><th>w2sigmpro</th><th>w2snr</th><th>w2rchi2</th><th>w3mpro</th><th>w3sigmpro</th><th>w3snr</th><th>w3rchi2</th><th>w4mpro</th><th>w4sigmpro</th><th>w4snr</th><th>w4rchi2</th><th>nb</th><th>na</th><th>w1sat</th><th>w2sat</th><th>w3sat</th><th>w4sat</th><th>cc_flags</th><th>ext_flg</th><th>var_flg</th><th>moon_lev</th><th>w1nm</th><th>w1m</th><th>w2nm</th><th>w2m</th><th>w3nm</th><th>w3m</th><th>w4nm</th><th>w4m</th><th>w1mag</th><th>w1sigm</th><th>w1flg</th><th>w1mcor</th><th>w2mag</th><th>w2sigm</th><th>w2flg</th><th>w2mcor</th><th>w3mag</th><th>w3sigm</th><th>w3flg</th><th>w3mcor</th><th>w4mag</th><th>w4sigm</th><th>w4flg</th><th>w4mcor</th><th>tmass_key</th><th>j_m_2mass</th><th>j_msig_2mass</th><th>h_m_2mass</th><th>h_msig_2mass</th><th>k_m_2mass</th><th>k_msig_2mass</th><th>dist</th><th>angle</th><th>id</th></tr></thead>
+<thead><tr><th></th><th>deg</th><th>deg</th><th></th><th></th><th>arcs</th><th>arcs</th><th>arcs</th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>arcs</th><th>deg</th><th></th></tr></thead>
+<thead><tr><th>object</th><th>float64</th><th>float64</th><th>object</th><th>object</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>object</th><th>int32</th><th>object</th><th>object</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>object</th></tr></thead>
+<tr><td>J053530.49-051529.3</td><td>83.877</td><td>-5.258</td><td>05h35m30.50s</td><td>-05d15m29.36s</td><td>1.0523</td><td>1.7555000000000001</td><td>-0.95079999999999998</td><td>8.3640000000000008</td><td>--</td><td>1.8</td><td>8.5909999999999993</td><td>7.6349999999999998</td><td>0.503</td><td>2.2000000000000002</td><td>11.119999999999999</td><td>-3.2450000000000001</td><td>0.014999999999999999</td><td>71.799999999999997</td><td>4.4039999999999999</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.76800000000000002</td><td>--</td><td>ddd0</td><td>3</td><td>nnnn</td><td>0000</td><td>0</td><td>12</td><td>0</td><td>13</td><td>13</td><td>13</td><td>--</td><td>--</td><td>8.9930000000000003</td><td>0.067000000000000004</td><td>0</td><td>0.26100000000000001</td><td>7.6070000000000002</td><td>0.035999999999999997</td><td>0</td><td>0.31900000000000001</td><td>10.321</td><td>--</td><td>32</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>517.707989</td><td>23.856493</td><td>0</td></tr>
+<tr><td>J053539.34-051636.0</td><td>83.914</td><td>-5.277</td><td>05h35m39.34s</td><td>-05d16m36.08s</td><td>0.069900000000000004</td><td>0.066600000000000006</td><td>-0.0292</td><td>9.8170000000000002</td><td>0.023</td><td>46.799999999999997</td><td>168.90000000000001</td><td>9.1449999999999996</td><td>0.024</td><td>44.799999999999997</td><td>111.3</td><td>4.0369999999999999</td><td>0.021999999999999999</td><td>49.299999999999997</td><td>73.670000000000002</td><td>-0.34000000000000002</td><td>0.021000000000000001</td><td>51.799999999999997</td><td>79.590000000000003</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>dhhd</td><td>3</td><td>9999</td><td>0000</td><td>14</td><td>14</td><td>14</td><td>14</td><td>14</td><td>14</td><td>14</td><td>14</td><td>9.2409999999999997</td><td>0.019</td><td>0</td><td>0.26100000000000001</td><td>8.7729999999999997</td><td>0.11</td><td>0</td><td>0.31900000000000001</td><td>3.5230000000000001</td><td>0.048000000000000001</td><td>0</td><td>0.82499999999999996</td><td>-0.76700000000000002</td><td>0.108</td><td>1</td><td>0.57599999999999996</td><td>1194812032</td><td>14.132999999999999</td><td>0.033000000000000002</td><td>12.257</td><td>0.035999999999999997</td><td>11.411</td><td>0.024</td><td>531.091905</td><td>40.016219999999997</td><td>1</td></tr>
+<tr><td>J053452.59-051655.2</td><td>83.719</td><td>-5.282</td><td>05h34m52.60s</td><td>-05d16m55.21s</td><td>0.067000000000000004</td><td>0.070699999999999999</td><td>-0.0037000000000000002</td><td>12.444000000000001</td><td>0.029999999999999999</td><td>35.799999999999997</td><td>63.659999999999997</td><td>12.448</td><td>0.11799999999999999</td><td>9.1999999999999993</td><td>10.32</td><td>5.7880000000000003</td><td>0.042999999999999997</td><td>25.300000000000001</td><td>14.93</td><td>3.137</td><td>0.14099999999999999</td><td>7.7000000000000002</td><td>7.0999999999999996</td><td>3</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>hddd</td><td>3</td><td>9n9n</td><td>0000</td><td>10</td><td>14</td><td>2</td><td>14</td><td>12</td><td>12</td><td>3</td><td>13</td><td>10.84</td><td>0.153</td><td>0</td><td>0.26100000000000001</td><td>10.167999999999999</td><td>0.215</td><td>0</td><td>0.31900000000000001</td><td>5.0659999999999998</td><td>0.114</td><td>0</td><td>0.82499999999999996</td><td>1.1899999999999999</td><td>0.40100000000000002</td><td>1</td><td>0.57599999999999996</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>526.75310200000001</td><td>317.378962</td><td>2</td></tr>
+<tr><td>J053518.81-051729.1</td><td>83.828</td><td>-5.291</td><td>05h35m18.82s</td><td>-05d17m29.19s</td><td>0.0253</td><td>0.0252</td><td>-0.0109</td><td>6.032</td><td>0.042000000000000003</td><td>25.899999999999999</td><td>5.2460000000000004</td><td>5.3230000000000004</td><td>0.031</td><td>34.5</td><td>2.0139999999999998</td><td>1.7270000000000001</td><td>0.155</td><td>7.0</td><td>155.5</td><td>-0.65300000000000002</td><td>0.012999999999999999</td><td>81.400000000000006</td><td>216.5</td><td>1</td><td>0</td><td>0.114</td><td>0.107</td><td>0.379</td><td>0.0</td><td>hhdd</td><td>3</td><td>0099</td><td>0000</td><td>13</td><td>13</td><td>13</td><td>13</td><td>12</td><td>12</td><td>11</td><td>12</td><td>7.1609999999999996</td><td>0.021000000000000001</td><td>16</td><td>0.26100000000000001</td><td>6.1379999999999999</td><td>0.023</td><td>16</td><td>0.31900000000000001</td><td>3.0539999999999998</td><td>0.016</td><td>16</td><td>0.82499999999999996</td><td>-0.57399999999999995</td><td>0.012</td><td>1</td><td>0.57599999999999996</td><td>1194805478</td><td>11.218999999999999</td><td>0.024</td><td>9.3859999999999992</td><td>0.032000000000000001</td><td>7.8959999999999999</td><td>0.023</td><td>355.37717199999997</td><td>5.6364660000000004</td><td>3</td></tr>
+<tr><td>J053525.87-051831.7</td><td>83.858</td><td>-5.309</td><td>05h35m25.88s</td><td>-05d18m31.74s</td><td>0.17549999999999999</td><td>0.18099999999999999</td><td>-0.043700000000000003</td><td>9.952</td><td>0.070000000000000007</td><td>15.5</td><td>9.2289999999999992</td><td>9.3279999999999994</td><td>0.080000000000000002</td><td>13.6</td><td>6.8159999999999998</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>2</td><td>0</td><td>0.0</td><td>0.0</td><td>--</td><td>--</td><td>dd00</td><td>3</td><td>99nn</td><td>0000</td><td>10</td><td>14</td><td>6</td><td>14</td><td>--</td><td>--</td><td>--</td><td>--</td><td>8.6010000000000009</td><td>0.072999999999999995</td><td>1</td><td>0.26100000000000001</td><td>8.6170000000000009</td><td>0.35199999999999998</td><td>1</td><td>0.31900000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>323.180588</td><td>25.742743999999998</td><td>4</td></tr>
+<tr><td>J053537.20-051710.1</td><td>83.905</td><td>-5.286</td><td>05h35m37.21s</td><td>-05d17m10.19s</td><td>0.073400000000000007</td><td>0.074399999999999994</td><td>-0.048500000000000001</td><td>7.6539999999999999</td><td>0.036999999999999998</td><td>29.100000000000001</td><td>133.40000000000001</td><td>7.0270000000000001</td><td>0.025000000000000001</td><td>43.100000000000001</td><td>240.5</td><td>1.5489999999999999</td><td>0.035000000000000003</td><td>30.600000000000001</td><td>54.539999999999999</td><td>-0.76600000000000001</td><td>0.021000000000000001</td><td>52.100000000000001</td><td>126.90000000000001</td><td>2</td><td>0</td><td>0.0</td><td>0.0</td><td>0.47199999999999998</td><td>0.0</td><td>dddh</td><td>3</td><td>9999</td><td>0000</td><td>13</td><td>13</td><td>13</td><td>13</td><td>10</td><td>13</td><td>13</td><td>13</td><td>8.4250000000000007</td><td>0.029999999999999999</td><td>1</td><td>0.26100000000000001</td><td>8.5600000000000005</td><td>0.503</td><td>1</td><td>0.31900000000000001</td><td>2.8410000000000002</td><td>--</td><td>32</td><td>0.82499999999999996</td><td>-1.2170000000000001</td><td>0.075999999999999998</td><td>1</td><td>0.57599999999999996</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>484.47897799999998</td><td>39.722054999999997</td><td>5</td></tr>
+<tr><td>J053450.40-051604.0</td><td>83.710</td><td>-5.268</td><td>05h34m50.41s</td><td>-05d16m04.01s</td><td>0.045900000000000003</td><td>0.045400000000000003</td><td>-0.0074999999999999997</td><td>11.026999999999999</td><td>0.031</td><td>35.100000000000001</td><td>69.709999999999994</td><td>10.111000000000001</td><td>0.025999999999999999</td><td>42.299999999999997</td><td>52.710000000000001</td><td>5.4199999999999999</td><td>0.073999999999999996</td><td>14.699999999999999</td><td>4.4829999999999997</td><td>0.045999999999999999</td><td>0.034000000000000002</td><td>32.200000000000003</td><td>51.109999999999999</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>00hh</td><td>3</td><td>8969</td><td>0000</td><td>14</td><td>14</td><td>14</td><td>14</td><td>13</td><td>13</td><td>7</td><td>10</td><td>10.433999999999999</td><td>0.050000000000000003</td><td>0</td><td>0.26100000000000001</td><td>9.6609999999999996</td><td>0.055</td><td>0</td><td>0.31900000000000001</td><td>4.7649999999999997</td><td>0.29099999999999998</td><td>0</td><td>0.82499999999999996</td><td>-0.39200000000000002</td><td>--</td><td>32</td><td>0.57599999999999996</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>586.65157199999999</td><td>318.41530699999998</td><td>6</td></tr>
+<tr><td>J053518.52-051338.3</td><td>83.827</td><td>-5.227</td><td>05h35m18.52s</td><td>-05d13m38.37s</td><td>0.037499999999999999</td><td>0.035499999999999997</td><td>-0.0061999999999999998</td><td>7.8949999999999996</td><td>0.023</td><td>46.399999999999999</td><td>4.0540000000000003</td><td>6.7880000000000003</td><td>0.021000000000000001</td><td>50.799999999999997</td><td>2.8380000000000001</td><td>2.7400000000000002</td><td>0.35899999999999999</td><td>3.0</td><td>543.0</td><td>-0.161</td><td>0.044999999999999998</td><td>24.300000000000001</td><td>26.370000000000001</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.19400000000000001</td><td>0.0</td><td>dddD</td><td>3</td><td>11nn</td><td>0000</td><td>13</td><td>13</td><td>13</td><td>13</td><td>9</td><td>9</td><td>6</td><td>12</td><td>7.8739999999999997</td><td>0.012</td><td>0</td><td>0.26100000000000001</td><td>6.8979999999999997</td><td>0.080000000000000002</td><td>0</td><td>0.31900000000000001</td><td>4.1420000000000003</td><td>--</td><td>32</td><td>0.82499999999999996</td><td>-0.91400000000000003</td><td>--</td><td>32</td><td>0.57599999999999996</td><td>1194805249</td><td>11.449</td><td>0.021999999999999999</td><td>10.103</td><td>0.032000000000000001</td><td>9.2910000000000004</td><td>0.023</td><td>585.26883899999996</td><td>2.9882529999999998</td><td>7</td></tr>
+<tr><td>J053537.92-051701.5</td><td>83.908</td><td>-5.284</td><td>05h35m37.92s</td><td>-05d17m01.52s</td><td>0.12670000000000001</td><td>0.1552</td><td>0.0327</td><td>9.5600000000000005</td><td>0.041000000000000002</td><td>26.699999999999999</td><td>55.75</td><td>8.8450000000000006</td><td>0.032000000000000001</td><td>33.700000000000003</td><td>88.840000000000003</td><td>3.9420000000000002</td><td>0.070000000000000007</td><td>15.6</td><td>21.129999999999999</td><td>1.0800000000000001</td><td>0.043999999999999997</td><td>24.699999999999999</td><td>54.310000000000002</td><td>2</td><td>0</td><td>0.0</td><td>0.0</td><td>0.20399999999999999</td><td>0.0</td><td>hddd</td><td>3</td><td>9999</td><td>0000</td><td>13</td><td>13</td><td>13</td><td>13</td><td>11</td><td>12</td><td>10</td><td>13</td><td>8.6440000000000001</td><td>0.066000000000000003</td><td>1</td><td>0.26100000000000001</td><td>8.0589999999999993</td><td>--</td><td>32</td><td>0.31900000000000001</td><td>2.6880000000000002</td><td>--</td><td>32</td><td>0.82499999999999996</td><td>-1.1519999999999999</td><td>0.043999999999999997</td><td>1</td><td>0.57599999999999996</td><td>1194812006</td><td>14.862</td><td>--</td><td>14.318</td><td>--</td><td>14.868</td><td>0.20300000000000001</td><td>497.96801499999998</td><td>40.028815000000002</td><td>8</td></tr>
+<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>J053542.50-052732.4</td><td>83.927</td><td>-5.459</td><td>05h35m42.51s</td><td>-05d27m32.41s</td><td>0.076799999999999993</td><td>0.075999999999999998</td><td>0.0057000000000000002</td><td>9.032</td><td>0.023</td><td>47.399999999999999</td><td>29.710000000000001</td><td>8.4570000000000007</td><td>0.021000000000000001</td><td>52.0</td><td>26.02</td><td>4.8369999999999997</td><td>0.036999999999999998</td><td>29.5</td><td>7.7210000000000001</td><td>5.5119999999999996</td><td>--</td><td>--</td><td>5281.0</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>hh0D</td><td>3</td><td>929n</td><td>0000</td><td>13</td><td>13</td><td>13</td><td>13</td><td>13</td><td>13</td><td>1</td><td>7</td><td>8.7989999999999995</td><td>0.014999999999999999</td><td>1</td><td>0.26100000000000001</td><td>8.2699999999999996</td><td>0.048000000000000001</td><td>1</td><td>0.31900000000000001</td><td>3.827</td><td>0.048000000000000001</td><td>0</td><td>0.82499999999999996</td><td>0.045999999999999999</td><td>0.35299999999999998</td><td>1</td><td>0.57599999999999996</td><td>1194811440</td><td>11.391999999999999</td><td>0.024</td><td>10.566000000000001</td><td>0.031</td><td>10.122</td><td>0.021000000000000001</td><td>461.93136900000002</td><td>122.705634</td><td>490</td></tr>
+<tr><td>J053541.19-052751.7</td><td>83.922</td><td>-5.464</td><td>05h35m41.20s</td><td>-05d27m51.70s</td><td>0.1321</td><td>0.1211</td><td>-0.0195</td><td>11.48</td><td>0.058000000000000003</td><td>18.800000000000001</td><td>2.653</td><td>10.984</td><td>0.069000000000000006</td><td>15.800000000000001</td><td>4.484</td><td>7.8920000000000003</td><td>--</td><td>-0.90000000000000002</td><td>0.57389999999999997</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>dd00</td><td>3</td><td>99nn</td><td>0000</td><td>12</td><td>13</td><td>13</td><td>13</td><td>0</td><td>2</td><td>0</td><td>0</td><td>10.435</td><td>0.113</td><td>1</td><td>0.26100000000000001</td><td>9.5899999999999999</td><td>0.107</td><td>1</td><td>0.31900000000000001</td><td>5.1260000000000003</td><td>--</td><td>32</td><td>0.82499999999999996</td><td>0.091999999999999998</td><td>0.069000000000000006</td><td>1</td><td>0.57599999999999996</td><td>1194811424</td><td>12.5</td><td>0.021999999999999999</td><td>11.68</td><td>0.031</td><td>11.198</td><td>0.021000000000000001</td><td>456.66587600000003</td><td>126.072276</td><td>491</td></tr>
+<tr><td>J053437.40-052124.5</td><td>83.656</td><td>-5.357</td><td>05h34m37.40s</td><td>-05d21m24.55s</td><td>0.28870000000000001</td><td>0.37240000000000001</td><td>0.059999999999999998</td><td>13.512</td><td>--</td><td>-3.6000000000000001</td><td>1.712</td><td>12.968999999999999</td><td>--</td><td>-4.0</td><td>1.663</td><td>6.4329999999999998</td><td>0.047</td><td>23.199999999999999</td><td>6.3250000000000002</td><td>4.3390000000000004</td><td>0.20200000000000001</td><td>5.4000000000000004</td><td>2.847</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>000D</td><td>1</td><td>nn9n</td><td>0000</td><td>0</td><td>1</td><td>0</td><td>11</td><td>6</td><td>8</td><td>2</td><td>8</td><td>11.577</td><td>--</td><td>32</td><td>0.26100000000000001</td><td>11.105</td><td>--</td><td>32</td><td>0.31900000000000001</td><td>6.1429999999999998</td><td>0.065000000000000002</td><td>1</td><td>0.82499999999999996</td><td>2.0899999999999999</td><td>--</td><td>32</td><td>0.57599999999999996</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>595.45618899999999</td><td>281.45176900000001</td><td>492</td></tr>
+<tr><td>J053446.38-052431.9</td><td>83.693</td><td>-5.409</td><td>05h34m46.39s</td><td>-05d24m31.92s</td><td>0.1087</td><td>0.1147</td><td>-0.019699999999999999</td><td>10.398999999999999</td><td>0.028000000000000001</td><td>38.600000000000001</td><td>0.68220000000000003</td><td>10.356</td><td>0.048000000000000001</td><td>22.699999999999999</td><td>0.67989999999999995</td><td>7.0510000000000002</td><td>0.036999999999999998</td><td>29.399999999999999</td><td>22.469999999999999</td><td>2.8330000000000002</td><td>0.063</td><td>17.100000000000001</td><td>19.640000000000001</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0h0d</td><td>1</td><td>0999</td><td>0000</td><td>14</td><td>14</td><td>14</td><td>14</td><td>11</td><td>13</td><td>9</td><td>11</td><td>10.379</td><td>0.064000000000000001</td><td>0</td><td>0.26100000000000001</td><td>10.035</td><td>0.012999999999999999</td><td>0</td><td>0.31900000000000001</td><td>6.2939999999999996</td><td>0.084000000000000005</td><td>0</td><td>0.82499999999999996</td><td>1.462</td><td>--</td><td>32</td><td>0.57599999999999996</td><td>1194776404</td><td>11.532</td><td>0.023</td><td>10.839</td><td>0.035000000000000003</td><td>10.532</td><td>0.023</td><td>454.64256599999999</td><td>261.25540000000001</td><td>493</td></tr>
+<tr><td>J053514.32-051938.4</td><td>83.810</td><td>-5.327</td><td>05h35m14.33s</td><td>-05d19m38.46s</td><td>0.055500000000000001</td><td>0.056800000000000003</td><td>-0.0048999999999999998</td><td>8.4879999999999995</td><td>0.029000000000000001</td><td>36.899999999999999</td><td>68.280000000000001</td><td>7.6719999999999997</td><td>0.029000000000000001</td><td>37.700000000000003</td><td>45.020000000000003</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>--</td><td>--</td><td>dd00</td><td>3</td><td>99nn</td><td>0000</td><td>13</td><td>13</td><td>13</td><td>13</td><td>--</td><td>--</td><td>--</td><td>--</td><td>7.9550000000000001</td><td>0.037999999999999999</td><td>1</td><td>0.26100000000000001</td><td>7.2759999999999998</td><td>0.13200000000000001</td><td>1</td><td>0.31900000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1194805654</td><td>13.869</td><td>--</td><td>14.999000000000001</td><td>0.246</td><td>12.166</td><td>--</td><td>226.67055999999999</td><td>351.85771499999998</td><td>494</td></tr>
+<tr><td>J053513.93-051839.8</td><td>83.808</td><td>-5.311</td><td>05h35m13.94s</td><td>-05d18m39.87s</td><td>0.058799999999999998</td><td>0.062899999999999998</td><td>0.0073000000000000001</td><td>9.0960000000000001</td><td>0.033000000000000002</td><td>33.0</td><td>52.210000000000001</td><td>8.0489999999999995</td><td>0.029000000000000001</td><td>37.100000000000001</td><td>47.07</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>--</td><td>0.78100000000000003</td><td>dd00</td><td>3</td><td>99nn</td><td>0000</td><td>14</td><td>14</td><td>14</td><td>14</td><td>--</td><td>--</td><td>0</td><td>0</td><td>8.4559999999999995</td><td>0.107</td><td>1</td><td>0.26100000000000001</td><td>7.3259999999999996</td><td>0.045999999999999999</td><td>1</td><td>0.31900000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>-1.085</td><td>0.51600000000000001</td><td>21</td><td>0.57599999999999996</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>285.51074699999998</td><td>352.36319300000002</td><td>495</td></tr>
+<tr><td>J053508.69-051807.3</td><td>83.786</td><td>-5.302</td><td>05h35m08.69s</td><td>-05d18m07.34s</td><td>0.057000000000000002</td><td>0.058000000000000003</td><td>-0.0080999999999999996</td><td>8.8989999999999991</td><td>0.029000000000000001</td><td>37.200000000000003</td><td>82.519999999999996</td><td>8.3309999999999995</td><td>0.029000000000000001</td><td>37.200000000000003</td><td>45.850000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>2.827</td><td>--</td><td>-1.3</td><td>35.549999999999997</td><td>3</td><td>0</td><td>0.0</td><td>0.0</td><td>--</td><td>0.51700000000000002</td><td>hh0D</td><td>3</td><td>99nn</td><td>0000</td><td>13</td><td>13</td><td>13</td><td>13</td><td>--</td><td>--</td><td>0</td><td>3</td><td>8.3059999999999992</td><td>0.039</td><td>1</td><td>0.26100000000000001</td><td>8.0030000000000001</td><td>0.20399999999999999</td><td>1</td><td>0.31900000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>-1.8220000000000001</td><td>--</td><td>32</td><td>0.57599999999999996</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>336.26084100000003</td><td>339.76565499999998</td><td>496</td></tr>
+<tr><td>J053524.76-052145.8</td><td>83.853</td><td>-5.363</td><td>05h35m24.76s</td><td>-05d21m45.86s</td><td>0.22090000000000001</td><td>0.25269999999999998</td><td>-0.043999999999999997</td><td>8.7200000000000006</td><td>0.080000000000000002</td><td>13.5</td><td>6.8710000000000004</td><td>8.1950000000000003</td><td>0.14699999999999999</td><td>7.4000000000000004</td><td>1.2809999999999999</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>--</td><td>--</td><td>dd00</td><td>3</td><td>5nnn</td><td>0000</td><td>13</td><td>13</td><td>0</td><td>13</td><td>--</td><td>--</td><td>--</td><td>--</td><td>7.6219999999999999</td><td>0.20100000000000001</td><td>1</td><td>0.26100000000000001</td><td>7.048</td><td>0.29599999999999999</td><td>1</td><td>0.31900000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1194806060</td><td>13.750999999999999</td><td>--</td><td>13.207000000000001</td><td>--</td><td>14.457000000000001</td><td>0.22800000000000001</td><td>157.20597599999999</td><td>51.908293999999998</td><td>497</td></tr>
+<tr><td>J053511.74-051940.0</td><td>83.799</td><td>-5.328</td><td>05h35m11.75s</td><td>-05d19m40.07s</td><td>0.2417</td><td>0.2581</td><td>-0.036799999999999999</td><td>10.625</td><td>--</td><td>1.8</td><td>1.1359999999999999</td><td>9.2449999999999992</td><td>0.073999999999999996</td><td>14.6</td><td>7.9589999999999996</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1</td><td>0</td><td>0.0</td><td>0.0</td><td>--</td><td>--</td><td>dd00</td><td>3</td><td>nnnn</td><td>0000</td><td>1</td><td>1</td><td>7</td><td>7</td><td>--</td><td>--</td><td>--</td><td>--</td><td>8.7919999999999998</td><td>--</td><td>32</td><td>0.26100000000000001</td><td>8.0020000000000007</td><td>--</td><td>32</td><td>0.31900000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>233.72290599999999</td><td>342.39838400000002</td><td>498</td></tr>
+<tr><td>J053526.39-052501.4</td><td>83.860</td><td>-5.417</td><td>05h35m26.39s</td><td>-05d25m01.48s</td><td>0.063100000000000003</td><td>0.067699999999999996</td><td>0.030300000000000001</td><td>6.056</td><td>0.050000000000000003</td><td>21.899999999999999</td><td>27.710000000000001</td><td>4.8940000000000001</td><td>0.040000000000000001</td><td>27.199999999999999</td><td>16.170000000000002</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1</td><td>0</td><td>0.45500000000000002</td><td>0.41199999999999998</td><td>--</td><td>--</td><td>dd0D</td><td>3</td><td>94nn</td><td>0000</td><td>13</td><td>14</td><td>14</td><td>14</td><td>--</td><td>--</td><td>--</td><td>--</td><td>7.0270000000000001</td><td>0.065000000000000002</td><td>16</td><td>0.26100000000000001</td><td>5.7729999999999997</td><td>0.036999999999999998</td><td>16</td><td>0.31900000000000001</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>1194807733</td><td>6.2850000000000001</td><td>0.024</td><td>6.2779999999999996</td><td>0.037999999999999999</td><td>6.242</td><td>0.016</td><td>177.865711</td><td>123.679283</td><td>499</td></tr>
+</table>
 </div>
+
 </div>
 
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Practical-Exercise">Practical Exercise<a class="anchor-link" href="#Practical-Exercise">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Go to the documentation and try out a query interface for a service that might be relevant to you!</p>
+</div>
+</div>
 </div>
     </div>
   </div>

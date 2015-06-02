@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Astropy - Celestial Coordinates</title>
+<title>Astropy - WCS Transformations</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -1680,7 +1680,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Astropy:-Celestial-Coordinates">Astropy: Celestial Coordinates<a class="anchor-link" href="#Astropy:-Celestial-Coordinates">&#182;</a></h1>
+<h1 id="Astropy:-WCS-Transformations">Astropy: WCS Transformations<a class="anchor-link" href="#Astropy:-WCS-Transformations">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -1700,8 +1700,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For more information about the features presented below, you can read the
-<a href="http://docs.astropy.org/en/stable/coordinates/index.html">astropy.coordinates</a> docs.</p>
+<p>For more information about the features presented below, you can read the <a href="http://docs.astropy.org/en/v0.2.1/wcs/index.html">astropy.wcs</a> docs.</p>
 </div>
 </div>
 </div>
@@ -1710,7 +1709,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Representing-and-converting-coordinates">Representing and converting coordinates<a class="anchor-link" href="#Representing-and-converting-coordinates">&#182;</a></h2>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -1720,10 +1719,27 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Astropy includes a framework to represent celestial coordinates and transform
-between them. Astropy includes common coordinate systems (ICRS,
-FK4, FK5, Galactic, and AltAz).</p>
-<p>Creating coordinate objects is straightforward:</p>
+<p>The data used in this page (ROSAT.fits) is a map of the Soft X-ray Diffuse Background from the ROSAT XRT/PSPC in the 3/4 keV band, in an Aitoff projection:</p>
+<p><img src="http://python4cardiff.readthedocs.org/en/latest/_images/rosat_image.png" alt="image"></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Representing-WCS-transformations">Representing WCS transformations<a class="anchor-link" href="#Representing-WCS-transformations">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The World Coordinate System standard is often used in FITS files in order to describe the conversion from pixel to world (e.g. equatorial, galactic, etc.) coordinates. Given a FITS file with WCS information, such as <a href="data/ROSAT.fits">data/ROSAT.fits</a>, we can create an object to represent the WCS transformation either by directly supplying the filename:</p>
 </div>
 </div>
 </div>
@@ -1732,8 +1748,8 @@ FK4, FK5, Galactic, and AltAz).</p>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span>
-<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.wcs</span> <span class="kn">import</span> <span class="n">WCS</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="s">&#39;data/ROSAT.fits&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1746,39 +1762,55 @@ FK4, FK5, Galactic, and AltAz).</p>
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">10.68458</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">41.26917</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">astropy.wcs</span> <span class="kn">import</span> <span class="n">WCS</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">getheader</span><span class="p">(</span><span class="s">&#39;data/ROSAT.fits&#39;</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (10.68458, 41.26917)&gt;
-</pre>
 </div>
-
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pixel-to-World-and-World-to-Pixel-transformations">Pixel to World and World to Pixel transformations<a class="anchor-link" href="#Pixel-to-World-and-World-to-Pixel-transformations">&#182;</a></h2>
+</div>
 </div>
 </div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once the WCS object has been created, you can use the following methods to convert pixel to world coordinates:</p>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">SkyCoord</span><span class="p">(</span><span class="s">&#39;00h42m44.3s +41d16m9s&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">wx</span><span class="p">,</span> <span class="n">wy</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">wcs_pix2world</span><span class="p">(</span><span class="mf">250.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="n">wx</span><span class="p">,</span> <span class="n">wy</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1789,16 +1821,13 @@ FK4, FK5, Galactic, and AltAz).</p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
-&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (10.68458333, 41.26916667)&gt;
+353.442390467026 -13.865730426377153
+
 </pre>
 </div>
-
 </div>
 
 </div>
@@ -1810,49 +1839,19 @@ FK4, FK5, Galactic, and AltAz).</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The individual components of a coordinate are <code>Angle</code> objects, and their
-values are accessed using special attributes:</p>
+<p>This converts the pixel coordinates (250, 100) to the native world coordinate system of the transformation. Note the third argument, set to 1, which indicates whether the pixel coordinates should be treated as starting from (1, 1) (as FITS files do) or from (0, 0). Converting from world to pixel coordinates is similar:</p>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="s">&#39;00h42m44.3s +41d16m9s&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">ra</span>
+<div class="highlight"><pre><span class="n">px</span><span class="p">,</span> <span class="n">py</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">wcs_world2pix</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
-
-<div class="output_latex output_subarea output_pyout">
-$10^\circ41{}^\prime04.5{}^{\prime\prime}$
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -1862,7 +1861,7 @@ $10^\circ41{}^\prime04.5{}^{\prime\prime}$
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">hour</span>
+<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1873,27 +1872,39 @@ $10^\circ41{}^\prime04.5{}^{\prime\prime}$
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
-0.7123055555555556
+240.5 120.5
+
 </pre>
 </div>
-
 </div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Working-with-arrays">Working with arrays<a class="anchor-link" href="#Working-with-arrays">&#182;</a></h2>
+</div>
+</div>
+</div>
+
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">hms</span>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">px</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">200.</span><span class="p">,</span> <span class="mf">300.</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">py</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">100.</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">wx</span><span class="p">,</span> <span class="n">wy</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">wcs_pix2world</span><span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">wx</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1904,15 +1915,14 @@ $10^\circ41{}^\prime04.5{}^{\prime\prime}$
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
-hms_tuple(h=0.0, m=42.0, s=44.30000000000021)
+[  28.0161808    20.30808338   12.62092818    4.94670369  357.27752983
+  349.60557752  341.92298964  334.22180126  326.49385679  318.73072188]
+
 </pre>
 </div>
-
 </div>
 
 </div>
@@ -1924,534 +1934,7 @@ hms_tuple(h=0.0, m=42.0, s=44.30000000000021)
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">dec</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
-
-
-<div class="output_latex output_subarea output_pyout">
-$41^\circ16{}^\prime09{}^{\prime\prime}$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">radian</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-0.7202828378876265
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To convert to some other coordinate system, the easiest method is to use
-attribute-style access with short names for the built-in systems:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">galactic</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;SkyCoord (Galactic): (l, b) in deg
-    (121.17424437, -21.57288899)&gt;
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>but explicit transformations via the <code>transform_to</code> method are also available:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="s">&#39;galactic&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;SkyCoord (Galactic): (l, b) in deg
-    (121.17424437, -21.57288899)&gt;
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>astropy.coordinates</code> subpackage also provides a quick way to get coordinates for
-named objects (with an internet connection). The SkyCoord class has a method <code>from_name()</code>, that accepts a string and queries <a href="http://cds.u-strasbg.fr/cgi-bin/Sesame">Sesame</a> to retrieve coordinates for that
-object:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c_eq</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s">&quot;M16&quot;</span><span class="p">)</span>
-<span class="n">c_eq</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (274.7, -13.8067)&gt;
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Using-arrays-in-coordinates">Using arrays in coordinates<a class="anchor-link" href="#Using-arrays-in-coordinates">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Numpy arrays can be used inside coordinate objects instead of scalar floating point values (this is much more efficient that creating one coordinate object for each source). The following example demonstrates how one can combine the <code>Table</code> class with coordinate objects (you can download the data from <a href="data/2mass.tbl">here</a>).</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&#39;data/2mass.tbl&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;ascii.ipac&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">t</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-&lt;Table masked=True length=929&gt;
-<table id="table4425719880">
-<thead><tr><th>ra</th><th>dec</th><th>clon</th><th>clat</th><th>err_maj</th><th>err_min</th><th>err_ang</th><th>designation</th><th>j_m</th><th>j_cmsig</th><th>j_msigcom</th><th>j_snr</th><th>h_m</th><th>h_cmsig</th><th>h_msigcom</th><th>h_snr</th><th>k_m</th><th>k_cmsig</th><th>k_msigcom</th><th>k_snr</th><th>ph_qual</th><th>rd_flg</th><th>bl_flg</th><th>cc_flg</th><th>ndet</th><th>gal_contam</th><th>mp_flg</th><th>dist</th><th>angle</th><th>j_h</th><th>h_k</th><th>j_k</th></tr></thead>
-<thead><tr><th>deg</th><th>deg</th><th></th><th></th><th>arcsec</th><th>arcsec</th><th>deg</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead>
-<thead><tr><th>float64</th><th>float64</th><th>str384</th><th>str416</th><th>float64</th><th>float64</th><th>int64</th><th>str512</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>str96</th><th>str96</th><th>str96</th><th>str96</th><th>str192</th><th>int64</th><th>int64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th></tr></thead>
-<tr><td>274.429506</td><td>-13.870547</td><td>18h17m43.08s</td><td>-13d52m13.97s</td><td>0.08</td><td>0.08</td><td>45</td><td>18174308-1352139</td><td>16.305</td><td>0.142</td><td>0.143</td><td>6.7</td><td>14.048</td><td>0.107</td><td>0.108</td><td>13.6</td><td>13.257</td><td>0.066</td><td>0.066</td><td>16.5</td><td>CAA</td><td>222</td><td>111</td><td>0ss</td><td>066655</td><td>0</td><td>0</td><td>975.080151</td><td>256.448</td><td>2.257</td><td>0.791</td><td>3.048</td></tr>
-<tr><td>274.423821</td><td>-13.86974</td><td>18h17m41.72s</td><td>-13d52m11.06s</td><td>0.06</td><td>0.06</td><td>90</td><td>18174171-1352110</td><td>14.802</td><td>0.058</td><td>0.059</td><td>26.7</td><td>12.635</td><td>0.059</td><td>0.06</td><td>50.1</td><td>11.768</td><td>0.045</td><td>0.046</td><td>65.2</td><td>AAA</td><td>222</td><td>111</td><td>0ss</td><td>666666</td><td>0</td><td>0</td><td>993.752042</td><td>256.878</td><td>2.167</td><td>0.867</td><td>3.034</td></tr>
-<tr><td>274.424587</td><td>-13.739629</td><td>18h17m41.90s</td><td>-13d44m22.66s</td><td>0.08</td><td>0.08</td><td>45</td><td>18174190-1344226</td><td>16.328</td><td>--</td><td>--</td><td>--</td><td>14.345</td><td>0.059</td><td>0.06</td><td>10.4</td><td>13.405</td><td>0.046</td><td>0.047</td><td>14.4</td><td>UAA</td><td>022</td><td>011</td><td>0cc</td><td>003666</td><td>0</td><td>0</td><td>995.726698</td><td>284.113</td><td>--</td><td>0.94</td><td>--</td></tr>
-<tr><td>274.433933</td><td>-13.769502</td><td>18h17m44.14s</td><td>-13d46m10.21s</td><td>0.08</td><td>0.08</td><td>45</td><td>18174414-1346102</td><td>16.281</td><td>0.098</td><td>0.099</td><td>6.8</td><td>14.057</td><td>0.035</td><td>0.036</td><td>13.5</td><td>12.956</td><td>0.032</td><td>0.033</td><td>21.8</td><td>CAA</td><td>222</td><td>111</td><td>000</td><td>065566</td><td>0</td><td>0</td><td>942.627418</td><td>278.252</td><td>2.224</td><td>1.101</td><td>3.325</td></tr>
-<tr><td>274.437013</td><td>-13.885698</td><td>18h17m44.88s</td><td>-13d53m08.51s</td><td>0.09</td><td>0.09</td><td>45</td><td>18174488-1353085</td><td>15.171</td><td>--</td><td>--</td><td>--</td><td>14.412</td><td>0.152</td><td>0.152</td><td>9.8</td><td>13.742</td><td>0.095</td><td>0.095</td><td>10.6</td><td>UBA</td><td>622</td><td>022</td><td>0cc</td><td>005566</td><td>0</td><td>0</td><td>964.105389</td><td>252.93</td><td>--</td><td>0.67</td><td>--</td></tr>
-<tr><td>274.433996</td><td>-13.752446</td><td>18h17m44.16s</td><td>-13d45m08.81s</td><td>0.08</td><td>0.08</td><td>90</td><td>18174415-1345088</td><td>16.54</td><td>--</td><td>--</td><td>--</td><td>14.519</td><td>0.083</td><td>0.083</td><td>8.8</td><td>13.604</td><td>0.043</td><td>0.044</td><td>12.0</td><td>UBA</td><td>022</td><td>011</td><td>0cc</td><td>005666</td><td>0</td><td>0</td><td>953.230532</td><td>281.908</td><td>--</td><td>0.915</td><td>--</td></tr>
-<tr><td>274.418138</td><td>-13.77215</td><td>18h17m40.35s</td><td>-13d46m19.74s</td><td>0.08</td><td>0.08</td><td>90</td><td>18174035-1346197</td><td>17.98</td><td>--</td><td>--</td><td>--</td><td>14.61</td><td>0.043</td><td>0.044</td><td>8.1</td><td>13.456</td><td>0.056</td><td>0.057</td><td>13.8</td><td>UBA</td><td>022</td><td>011</td><td>000</td><td>001645</td><td>0</td><td>0</td><td>996.047248</td><td>277.25</td><td>--</td><td>1.154</td><td>--</td></tr>
-<tr><td>274.433695</td><td>-13.899049</td><td>18h17m44.09s</td><td>-13d53m56.58s</td><td>0.06</td><td>0.06</td><td>90</td><td>18174408-1353565</td><td>13.011</td><td>0.021</td><td>0.024</td><td>139.0</td><td>10.917</td><td>0.02</td><td>0.021</td><td>243.8</td><td>10.013</td><td>0.017</td><td>0.019</td><td>328.3</td><td>AAA</td><td>222</td><td>111</td><td>000</td><td>666666</td><td>0</td><td>0</td><td>990.166399</td><td>250.466</td><td>2.094</td><td>0.904</td><td>2.998</td></tr>
-<tr><td>274.425482</td><td>-13.77149</td><td>18h17m42.12s</td><td>-13d46m17.36s</td><td>0.08</td><td>0.08</td><td>135</td><td>18174211-1346173</td><td>16.086</td><td>--</td><td>--</td><td>--</td><td>13.709</td><td>0.065</td><td>0.066</td><td>18.6</td><td>12.503</td><td>0.044</td><td>0.045</td><td>33.1</td><td>UAA</td><td>622</td><td>012</td><td>00c</td><td>005555</td><td>0</td><td>0</td><td>970.896919</td><td>277.582</td><td>--</td><td>1.206</td><td>--</td></tr>
-<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>274.81801</td><td>-14.001245</td><td>18h19m16.32s</td><td>-14d00m04.48s</td><td>0.18</td><td>0.16</td><td>1</td><td>18191632-1400044</td><td>16.24</td><td>0.113</td><td>0.113</td><td>5.6</td><td>15.531</td><td>0.164</td><td>0.164</td><td>2.5</td><td>15.252</td><td>--</td><td>--</td><td>--</td><td>CDU</td><td>220</td><td>110</td><td>000</td><td>060600</td><td>0</td><td>0</td><td>809.817146</td><td>149.61</td><td>0.709</td><td>--</td><td>--</td></tr>
-<tr><td>274.822709</td><td>-14.037254</td><td>18h19m17.45s</td><td>-14d02m14.11s</td><td>0.07</td><td>0.07</td><td>45</td><td>18191745-1402141</td><td>15.999</td><td>0.097</td><td>0.098</td><td>7.0</td><td>14.009</td><td>0.032</td><td>0.033</td><td>10.0</td><td>13.077</td><td>0.035</td><td>0.036</td><td>16.4</td><td>CAA</td><td>222</td><td>111</td><td>000</td><td>062656</td><td>0</td><td>0</td><td>931.339773</td><td>152.779</td><td>1.99</td><td>0.932</td><td>2.922</td></tr>
-<tr><td>274.880758</td><td>-13.99956</td><td>18h19m31.38s</td><td>-13d59m58.42s</td><td>0.06</td><td>0.06</td><td>90</td><td>18193138-1359584</td><td>14.163</td><td>0.035</td><td>0.037</td><td>37.8</td><td>11.179</td><td>0.02</td><td>0.021</td><td>135.6</td><td>9.765</td><td>0.017</td><td>0.019</td><td>347.1</td><td>AAA</td><td>222</td><td>111</td><td>000</td><td>556666</td><td>0</td><td>0</td><td>935.512452</td><td>137.762</td><td>2.984</td><td>1.414</td><td>4.398</td></tr>
-<tr><td>274.652526</td><td>-14.055106</td><td>18h18m36.61s</td><td>-14d03m18.38s</td><td>0.06</td><td>0.06</td><td>90</td><td>18183660-1403183</td><td>15.035</td><td>0.052</td><td>0.054</td><td>19.4</td><td>13.099</td><td>0.04</td><td>0.041</td><td>27.5</td><td>12.254</td><td>0.041</td><td>0.041</td><td>41.7</td><td>AAA</td><td>222</td><td>111</td><td>c00</td><td>566666</td><td>0</td><td>0</td><td>908.109808</td><td>190.682</td><td>1.936</td><td>0.845</td><td>2.781</td></tr>
-<tr><td>274.760586</td><td>-13.999927</td><td>18h19m02.54s</td><td>-13d59m59.74s</td><td>0.08</td><td>0.08</td><td>90</td><td>18190254-1359597</td><td>16.329</td><td>0.122</td><td>0.123</td><td>5.5</td><td>14.488</td><td>0.067</td><td>0.067</td><td>6.4</td><td>13.617</td><td>0.051</td><td>0.052</td><td>11.1</td><td>CCA</td><td>222</td><td>111</td><td>000</td><td>060616</td><td>0</td><td>0</td><td>724.557553</td><td>163.227</td><td>1.841</td><td>0.871</td><td>2.712</td></tr>
-<tr><td>274.831132</td><td>-14.020027</td><td>18h19m19.47s</td><td>-14d01m12.10s</td><td>0.08</td><td>0.08</td><td>45</td><td>18191947-1401120</td><td>16.203</td><td>--</td><td>--</td><td>--</td><td>13.238</td><td>0.02</td><td>0.021</td><td>20.4</td><td>12.016</td><td>0.023</td><td>0.024</td><td>43.6</td><td>UAA</td><td>022</td><td>011</td><td>000</td><td>006666</td><td>0</td><td>0</td><td>891.347132</td><td>149.27</td><td>--</td><td>1.222</td><td>--</td></tr>
-<tr><td>274.972435</td><td>-13.760374</td><td>18h19m53.38s</td><td>-13d45m37.35s</td><td>0.12</td><td>0.11</td><td>10</td><td>18195338-1345373</td><td>17.472</td><td>--</td><td>--</td><td>--</td><td>16.755</td><td>--</td><td>--</td><td>--</td><td>14.413</td><td>0.084</td><td>0.084</td><td>4.8</td><td>UUD</td><td>002</td><td>001</td><td>000</td><td>000006</td><td>0</td><td>0</td><td>964.828933</td><td>79.963</td><td>--</td><td>--</td><td>--</td></tr>
-<tr><td>274.870009</td><td>-13.817775</td><td>18h19m28.80s</td><td>-13d49m03.99s</td><td>0.08</td><td>0.08</td><td>45</td><td>18192880-1349039</td><td>16.933</td><td>--</td><td>--</td><td>--</td><td>14.514</td><td>0.064</td><td>0.065</td><td>6.3</td><td>12.957</td><td>0.041</td><td>0.041</td><td>18.4</td><td>UCA</td><td>022</td><td>011</td><td>000</td><td>002666</td><td>0</td><td>0</td><td>592.998058</td><td>93.69</td><td>--</td><td>1.557</td><td>--</td></tr>
-<tr><td>274.735323</td><td>-13.941575</td><td>18h18m56.48s</td><td>-13d56m29.67s</td><td>0.14</td><td>0.14</td><td>45</td><td>18185647-1356296</td><td>16.643</td><td>--</td><td>--</td><td>--</td><td>14.88</td><td>--</td><td>--</td><td>--</td><td>14.291</td><td>0.116</td><td>0.117</td><td>6.0</td><td>UUC</td><td>002</td><td>001</td><td>000</td><td>000004</td><td>0</td><td>0</td><td>498.524438</td><td>165.968</td><td>--</td><td>--</td><td>--</td></tr>
-<tr><td>274.866294</td><td>-13.841778</td><td>18h19m27.91s</td><td>-13d50m30.40s</td><td>0.08</td><td>0.08</td><td>45</td><td>18192791-1350304</td><td>15.615</td><td>--</td><td>--</td><td>--</td><td>13.911</td><td>0.075</td><td>0.075</td><td>10.9</td><td>12.765</td><td>0.134</td><td>0.134</td><td>21.9</td><td>UAE</td><td>022</td><td>011</td><td>0cc</td><td>005545</td><td>0</td><td>0</td><td>591.97725</td><td>102.147</td><td>--</td><td>1.146</td><td>--</td></tr>
-</table>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that we didn&#39;t have to give the units because these are contained in the table metadata!</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">degree</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-array([ 274.429506,  274.423821,  274.424587,  274.433933,  274.437013,
-        274.433996,  274.418138,  274.433695,  274.425482,  274.433057])
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can also pass string columns:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">&#39;clon&#39;</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;clat&#39;</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Converting-to/from-AltAz">Converting to/from AltAz<a class="anchor-link" href="#Converting-to/from-AltAz">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
-<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">EarthLocation</span><span class="p">,</span> <span class="n">AltAz</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">m33</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s">&#39;M33&#39;</span><span class="p">)</span>  
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">bear_mountain</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">41.3</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mi">74</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">390</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
-<span class="n">utcoffset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">hour</span>  <span class="c"># Eastern Daylight Time</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s">&#39;2012-7-12 23:00:00&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">utcoffset</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">m33altaz</span> <span class="o">=</span> <span class="n">m33</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">time</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="n">bear_mountain</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">m33altaz</span><span class="o">.</span><span class="n">alt</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
-
-
-<div class="output_latex output_subarea output_pyout">
-$0^\circ07{}^\prime45.3475{}^{\prime\prime}$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">m33altaz</span><span class="o">.</span><span class="n">az</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
-
-
-<div class="output_latex output_subarea output_pyout">
-$47^\circ18{}^\prime29.2152{}^{\prime\prime}$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We now want to make a plot of the altitude vs time to plan observations</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">midnight</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s">&#39;2012-7-13 00:00:00&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">utcoffset</span>
-<span class="n">delta_midnight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">hour</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">m33altazs</span> <span class="o">=</span> <span class="n">m33</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">midnight</span><span class="o">+</span><span class="n">delta_midnight</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">bear_mountain</span><span class="p">))</span>  
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can now plot the results:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">delta_midnight</span><span class="p">,</span> <span class="n">m33altazs</span><span class="o">.</span><span class="n">alt</span><span class="p">)</span>  
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>  
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>  
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s">&#39;dashed&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Hours from EDT Midnight&#39;</span><span class="p">)</span>  
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Airmass [Sec(z)]&#39;</span><span class="p">)</span>  
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="n">wy</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2463,717 +1946,13 @@ $47^\circ18{}^\prime29.2152{}^{\prime\prime}$
 
 
 <div class="output_area"><div class="prompt"></div>
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-Vqzbk1gyJtoAAAAASUVORK5CYII=
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Matching-catalogs">Matching catalogs<a class="anchor-link" href="#Matching-catalogs">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Astropy includes functions that can help with catalog matching. Let&#39;s start from the 2MASS catalog used above and also use the WISE catalog for the same area of sky:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">t_2mass</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&#39;data/2mass.tbl&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;ascii.ipac&#39;</span><span class="p">)[</span><span class="s">&#39;ra&#39;</span><span class="p">,</span> <span class="s">&#39;dec&#39;</span><span class="p">,</span> <span class="s">&#39;j_m&#39;</span><span class="p">,</span> <span class="s">&#39;h_m&#39;</span><span class="p">,</span> <span class="s">&#39;k_m&#39;</span><span class="p">]</span>
-<span class="n">t_2mass</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-&lt;Table masked=True length=929&gt;
-<table id="table4422095872">
-<thead><tr><th>ra</th><th>dec</th><th>j_m</th><th>h_m</th><th>k_m</th></tr></thead>
-<thead><tr><th>deg</th><th>deg</th><th>mag</th><th>mag</th><th>mag</th></tr></thead>
-<thead><tr><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th></tr></thead>
-<tr><td>274.429506</td><td>-13.870547</td><td>16.305</td><td>14.048</td><td>13.257</td></tr>
-<tr><td>274.423821</td><td>-13.86974</td><td>14.802</td><td>12.635</td><td>11.768</td></tr>
-<tr><td>274.424587</td><td>-13.739629</td><td>16.328</td><td>14.345</td><td>13.405</td></tr>
-<tr><td>274.433933</td><td>-13.769502</td><td>16.281</td><td>14.057</td><td>12.956</td></tr>
-<tr><td>274.437013</td><td>-13.885698</td><td>15.171</td><td>14.412</td><td>13.742</td></tr>
-<tr><td>274.433996</td><td>-13.752446</td><td>16.54</td><td>14.519</td><td>13.604</td></tr>
-<tr><td>274.418138</td><td>-13.77215</td><td>17.98</td><td>14.61</td><td>13.456</td></tr>
-<tr><td>274.433695</td><td>-13.899049</td><td>13.011</td><td>10.917</td><td>10.013</td></tr>
-<tr><td>274.425482</td><td>-13.77149</td><td>16.086</td><td>13.709</td><td>12.503</td></tr>
-<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>274.81801</td><td>-14.001245</td><td>16.24</td><td>15.531</td><td>15.252</td></tr>
-<tr><td>274.822709</td><td>-14.037254</td><td>15.999</td><td>14.009</td><td>13.077</td></tr>
-<tr><td>274.880758</td><td>-13.99956</td><td>14.163</td><td>11.179</td><td>9.765</td></tr>
-<tr><td>274.652526</td><td>-14.055106</td><td>15.035</td><td>13.099</td><td>12.254</td></tr>
-<tr><td>274.760586</td><td>-13.999927</td><td>16.329</td><td>14.488</td><td>13.617</td></tr>
-<tr><td>274.831132</td><td>-14.020027</td><td>16.203</td><td>13.238</td><td>12.016</td></tr>
-<tr><td>274.972435</td><td>-13.760374</td><td>17.472</td><td>16.755</td><td>14.413</td></tr>
-<tr><td>274.870009</td><td>-13.817775</td><td>16.933</td><td>14.514</td><td>12.957</td></tr>
-<tr><td>274.735323</td><td>-13.941575</td><td>16.643</td><td>14.88</td><td>14.291</td></tr>
-<tr><td>274.866294</td><td>-13.841778</td><td>15.615</td><td>13.911</td><td>12.765</td></tr>
-</table>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">t_wise</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">&#39;data/wise.tbl&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;ascii.ipac&#39;</span><span class="p">)[</span><span class="s">&#39;designation&#39;</span><span class="p">,</span> <span class="s">&#39;ra&#39;</span><span class="p">,</span> <span class="s">&#39;dec&#39;</span><span class="p">,</span> <span class="s">&#39;w1mpro&#39;</span><span class="p">,</span> <span class="s">&#39;w2mpro&#39;</span><span class="p">,</span> <span class="s">&#39;w3mpro&#39;</span><span class="p">,</span> <span class="s">&#39;w4mpro&#39;</span><span class="p">]</span>
-<span class="n">t_wise</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-&lt;Table masked=True length=17816&gt;
-<table id="table4444420920">
-<thead><tr><th>designation</th><th>ra</th><th>dec</th><th>w1mpro</th><th>w2mpro</th><th>w3mpro</th><th>w4mpro</th></tr></thead>
-<thead><tr><th></th><th>deg</th><th>deg</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th></tr></thead>
-<thead><tr><th>str608</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th></tr></thead>
-<tr><td>J181752.24-141213.2</td><td>274.4676959</td><td>-14.2036914</td><td>10.009</td><td>10.047</td><td>10.197</td><td>8.298</td></tr>
-<tr><td>J181751.14-141210.7</td><td>274.463119</td><td>-14.2029941</td><td>11.06</td><td>11.129</td><td>10.5</td><td>8.215</td></tr>
-<tr><td>J181751.89-141122.0</td><td>274.4662354</td><td>-14.1894445</td><td>11.598</td><td>11.728</td><td>9.452</td><td>6.486</td></tr>
-<tr><td>J181752.41-141141.8</td><td>274.4684096</td><td>-14.1949513</td><td>11.709</td><td>11.937</td><td>9.759</td><td>7.189</td></tr>
-<tr><td>J181750.20-141145.3</td><td>274.4592003</td><td>-14.1959334</td><td>8.851</td><td>8.86</td><td>7.844</td><td>6.148</td></tr>
-<tr><td>J181750.22-141217.2</td><td>274.4592581</td><td>-14.2047906</td><td>11.933</td><td>12.285</td><td>11.613</td><td>7.653</td></tr>
-<tr><td>J181751.35-141147.6</td><td>274.4639589</td><td>-14.1965688</td><td>9.815</td><td>9.931</td><td>9.115</td><td>7.549</td></tr>
-<tr><td>J181756.19-141144.7</td><td>274.4841457</td><td>-14.1957676</td><td>10.334</td><td>10.458</td><td>9.229</td><td>7.273</td></tr>
-<tr><td>J181756.80-141145.0</td><td>274.4866976</td><td>-14.195861</td><td>9.938</td><td>10.002</td><td>10.2</td><td>7.299</td></tr>
-<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>J181823.85-141545.4</td><td>274.5994027</td><td>-14.2626192</td><td>5.29</td><td>5.085</td><td>4.044</td><td>2.677</td></tr>
-<tr><td>J181823.55-141525.8</td><td>274.5981294</td><td>-14.2571837</td><td>9.253</td><td>9.131</td><td>7.635</td><td>4.545</td></tr>
-<tr><td>J181821.52-141549.8</td><td>274.5896669</td><td>-14.2638349</td><td>11.046</td><td>11.377</td><td>9.028</td><td>6.143</td></tr>
-<tr><td>J181825.74-141529.3</td><td>274.607255</td><td>-14.2581409</td><td>11.134</td><td>11.212</td><td>9.685</td><td>6.36</td></tr>
-<tr><td>J181826.18-141546.2</td><td>274.6090842</td><td>-14.2628371</td><td>8.692</td><td>8.834</td><td>8.86</td><td>6.675</td></tr>
-<tr><td>J181825.76-141609.2</td><td>274.6073677</td><td>-14.2692411</td><td>11.401</td><td>11.34</td><td>9.26</td><td>6.217</td></tr>
-<tr><td>J181826.07-141624.5</td><td>274.6086441</td><td>-14.2734739</td><td>8.526</td><td>8.634</td><td>8.756</td><td>6.527</td></tr>
-<tr><td>J181824.83-141619.9</td><td>274.603471</td><td>-14.2721981</td><td>7.873</td><td>7.936</td><td>7.586</td><td>5.642</td></tr>
-<tr><td>J181823.90-141609.1</td><td>274.5996039</td><td>-14.2692111</td><td>5.575</td><td>5.733</td><td>5.036</td><td>3.429</td></tr>
-<tr><td>J181829.04-141803.8</td><td>274.6210114</td><td>-14.3010686</td><td>11.531</td><td>11.793</td><td>10.006</td><td>6.503</td></tr>
-</table>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">c_2mass</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">t_2mass</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">],</span> <span class="n">t_2mass</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">])</span>
-<span class="n">c_wise</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">t_wise</span><span class="p">[</span><span class="s">&#39;ra&#39;</span><span class="p">],</span> <span class="n">t_wise</span><span class="p">[</span><span class="s">&#39;dec&#39;</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">idx_wise</span><span class="p">,</span> <span class="n">idx_2mass</span><span class="p">,</span> <span class="n">d2d</span><span class="p">,</span> <span class="n">d3d</span> <span class="o">=</span> <span class="n">c_2mass</span><span class="o">.</span><span class="n">search_around_sky</span><span class="p">(</span><span class="n">c_wise</span><span class="p">,</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">t_2mass</span><span class="p">[</span><span class="n">idx_2mass</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-&lt;Table masked=True length=269&gt;
-<table id="table4540726072">
-<thead><tr><th>ra</th><th>dec</th><th>j_m</th><th>h_m</th><th>k_m</th></tr></thead>
-<thead><tr><th>deg</th><th>deg</th><th>mag</th><th>mag</th><th>mag</th></tr></thead>
-<thead><tr><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th></tr></thead>
-<tr><td>274.624839</td><td>-14.051597</td><td>16.03</td><td>13.823</td><td>13.145</td></tr>
-<tr><td>274.6045</td><td>-14.061802</td><td>13.031</td><td>11.234</td><td>10.251</td></tr>
-<tr><td>274.605645</td><td>-14.061247</td><td>15.099</td><td>13.279</td><td>12.46</td></tr>
-<tr><td>274.623156</td><td>-14.0676</td><td>15.038</td><td>13.245</td><td>12.551</td></tr>
-<tr><td>274.797491</td><td>-14.066624</td><td>13.965</td><td>13.019</td><td>12.61</td></tr>
-<tr><td>274.798888</td><td>-13.881427</td><td>14.398</td><td>12.738</td><td>11.863</td></tr>
-<tr><td>274.779886</td><td>-13.901997</td><td>16.904</td><td>13.905</td><td>12.479</td></tr>
-<tr><td>274.763438</td><td>-13.943701</td><td>17.379</td><td>14.327</td><td>12.757</td></tr>
-<tr><td>274.755625</td><td>-13.915264</td><td>15.847</td><td>12.606</td><td>11.033</td></tr>
-<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>274.428059</td><td>-13.769484</td><td>15.885</td><td>14.094</td><td>13.181</td></tr>
-<tr><td>274.425482</td><td>-13.77149</td><td>16.086</td><td>13.709</td><td>12.503</td></tr>
-<tr><td>274.426632</td><td>-13.770931</td><td>16.441</td><td>14.741</td><td>13.833</td></tr>
-<tr><td>274.419872</td><td>-13.765019</td><td>14.549</td><td>11.529</td><td>10.15</td></tr>
-<tr><td>274.418138</td><td>-13.77215</td><td>17.98</td><td>14.61</td><td>13.456</td></tr>
-<tr><td>274.420732</td><td>-13.772399</td><td>16.06</td><td>13.734</td><td>12.622</td></tr>
-<tr><td>274.421593</td><td>-13.77148</td><td>16.042</td><td>14.364</td><td>13.331</td></tr>
-<tr><td>274.42386</td><td>-13.865885</td><td>12.188</td><td>10.031</td><td>9.086</td></tr>
-<tr><td>274.422162</td><td>-13.859782</td><td>15.574</td><td>13.017</td><td>12.021</td></tr>
-<tr><td>274.421415</td><td>-13.858602</td><td>16.198</td><td>14.695</td><td>12.924</td></tr>
-</table>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">t_wise</span><span class="p">[</span><span class="n">idx_wise</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-&lt;Table masked=True length=269&gt;
-<table id="table4466932648">
-<thead><tr><th>designation</th><th>ra</th><th>dec</th><th>w1mpro</th><th>w2mpro</th><th>w3mpro</th><th>w4mpro</th></tr></thead>
-<thead><tr><th></th><th>deg</th><th>deg</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th></tr></thead>
-<thead><tr><th>str608</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th></tr></thead>
-<tr><td>J181829.96-140306.6</td><td>274.6248577</td><td>-14.0518347</td><td>12.465</td><td>13.004</td><td>10.188</td><td>5.11</td></tr>
-<tr><td>J181825.09-140342.1</td><td>274.6045432</td><td>-14.0617133</td><td>9.529</td><td>9.497</td><td>9.815</td><td>5.506</td></tr>
-<tr><td>J181825.09-140342.1</td><td>274.6045432</td><td>-14.0617133</td><td>9.529</td><td>9.497</td><td>9.815</td><td>5.506</td></tr>
-<tr><td>J181829.48-140403.8</td><td>274.6228542</td><td>-14.067728</td><td>11.852</td><td>12.424</td><td>10.286</td><td>6.192</td></tr>
-<tr><td>J181911.20-140355.8</td><td>274.7966965</td><td>-14.0655162</td><td>10.736</td><td>10.857</td><td>11.196</td><td>7.671</td></tr>
-<tr><td>J181911.64-135256.2</td><td>274.7985357</td><td>-13.8822786</td><td>10.711</td><td>10.96</td><td>7.908</td><td>4.735</td></tr>
-<tr><td>J181907.16-135406.2</td><td>274.7798452</td><td>-13.9017291</td><td>11.235</td><td>12.894</td><td>8.652</td><td>5.447</td></tr>
-<tr><td>J181903.18-135637.2</td><td>274.7632695</td><td>-13.9436841</td><td>10.771</td><td>11.327</td><td>5.488</td><td>3.366</td></tr>
-<tr><td>J181901.29-135454.8</td><td>274.7554103</td><td>-13.915232</td><td>9.834</td><td>9.792</td><td>7.885</td><td>4.777</td></tr>
-<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>J181742.82-134611.6</td><td>274.4284175</td><td>-13.769904</td><td>12.095</td><td>11.8</td><td>6.518</td><td>4.286</td></tr>
-<tr><td>J181742.14-134617.3</td><td>274.4256164</td><td>-13.7714851</td><td>11.403</td><td>11.292</td><td>7.075</td><td>4.722</td></tr>
-<tr><td>J181742.14-134617.3</td><td>274.4256164</td><td>-13.7714851</td><td>11.403</td><td>11.292</td><td>7.075</td><td>4.722</td></tr>
-<tr><td>J181740.77-134554.2</td><td>274.419875</td><td>-13.7650572</td><td>9.376</td><td>9.176</td><td>9.198</td><td>4.708</td></tr>
-<tr><td>J181740.10-134616.4</td><td>274.4171127</td><td>-13.7712265</td><td>12.447</td><td>12.832</td><td>9.178</td><td>6.375</td></tr>
-<tr><td>J181741.04-134619.8</td><td>274.4210011</td><td>-13.7721765</td><td>11.569</td><td>11.655</td><td>8.606</td><td>6.116</td></tr>
-<tr><td>J181741.04-134619.8</td><td>274.4210011</td><td>-13.7721765</td><td>11.569</td><td>11.655</td><td>8.606</td><td>6.116</td></tr>
-<tr><td>J181741.72-135157.2</td><td>274.4238584</td><td>-13.8658986</td><td>8.519</td><td>8.606</td><td>7.844</td><td>4.485</td></tr>
-<tr><td>J181741.27-135135.1</td><td>274.4219657</td><td>-13.8597573</td><td>11.331</td><td>11.292</td><td>9.897</td><td>4.96</td></tr>
-<tr><td>J181741.27-135135.1</td><td>274.4219657</td><td>-13.8597573</td><td>11.331</td><td>11.292</td><td>9.897</td><td>4.96</td></tr>
-</table>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">hstack</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">t_merged</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">([</span><span class="n">t_2mass</span><span class="p">[</span><span class="n">idx_2mass</span><span class="p">],</span> <span class="n">t_wise</span><span class="p">[</span><span class="n">idx_wise</span><span class="p">]])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
-WARNING: MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;int&apos;&gt; and &lt;class &apos;int&apos;&gt;, choosing value=17816 [astropy.utils.metadata]
-WARNING:astropy:MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;int&apos;&gt; and &lt;class &apos;int&apos;&gt;, choosing value=17816
-WARNING: MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;00:00:48.73022&apos; [astropy.utils.metadata]
-WARNING:astropy:MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;00:00:48.73022&apos;
-WARNING: MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;2015-05-31 09:54:35&apos; [astropy.utils.metadata]
-WARNING:astropy:MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;2015-05-31 09:54:35&apos;
-WARNING: MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;ADS/IRSA.Gator#2015/0531/095435_22394&apos; [astropy.utils.metadata]
-WARNING:astropy:MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;ADS/IRSA.Gator#2015/0531/095435_22394&apos;
-WARNING: MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;AllWISE Source Catalog (wise_allwise_p3as_psd)&apos; [astropy.utils.metadata]
-WARNING:astropy:MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;AllWISE Source Catalog (wise_allwise_p3as_psd)&apos;
-WARNING: MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;within 0.5 deg of  ra=274.70073 dec=-13.80723 Eq J2000 &apos; [astropy.utils.metadata]
-WARNING:astropy:MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&apos;within 0.5 deg of  ra=274.70073 dec=-13.80723 Eq J2000 &apos;
-WARNING: MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&quot;&apos;WHERE (no constraints)SELECT (47 column names follow in next row.)&quot; [astropy.utils.metadata]
-WARNING:astropy:MergeConflictWarning: Cannot merge meta key &apos;value&apos; types &lt;class &apos;str&apos;&gt; and &lt;class &apos;str&apos;&gt;, choosing value=&quot;&apos;WHERE (no constraints)SELECT (47 column names follow in next row.)&quot;
+[-13.76885644 -13.8174681  -13.85053276 -13.86815294 -13.87038285
+ -13.85722932 -13.82865194 -13.78456237 -13.72482279 -13.64924359]
 
 </pre>
 </div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_merged</span><span class="p">[</span><span class="s">&#39;k_m&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">t_merged</span><span class="p">[</span><span class="s">&#39;w4mpro&#39;</span><span class="p">],</span>
-            <span class="n">t_merged</span><span class="p">[</span><span class="s">&#39;j_m&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">t_merged</span><span class="p">[</span><span class="s">&#39;k_m&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;K - W4&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;J - K&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-&lt;matplotlib.text.Text at 0x10cdc4dd8&gt;
-</pre>
-</div>
-
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
 </div>
 
 </div>
@@ -3205,9 +1984,22 @@ Kg6FgBBCKg6FgBBCKg6FgBBCKg6FgBBCKg6FgBBCKs7/BxgunguQcWhCAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Find the coordinates of the Crab Nebula in ICRS coordinates, and convert them to Galactic Coordinates.</p>
+<p>Try converting more values from pixel to world coordinates, and try converting these back to pixel coordinates. Do the results agree with the original pixel coordinates? Also, what are the world coordinates of the pixel at (1, 1), and why?</p>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Your solution here</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3224,9 +2016,22 @@ Kg6FgBBCKg6FgBBCKg6FgBBCKg6FgBBCKg6FgBBCKs7/BxgunguQcWhCAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Starting from <a href="data/rosat.vot">this</a> table in VO table format (this is the ROSAT all-sky catalog), read in the sources, use the RA and Dec columns to instantiate a coordinate object, then convert to Galactic coordinates. Make a plot of latitude versus longitude.</p>
+<p>Extract and print out the values in the ROSAT map at the position of the LAT Point Sources from the catalog in <a href="data/gll_psc_v08.fit">data/gll_psc_v08.fit</a> (using the columns GLAT and GLON)</p>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Your solution here</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3243,9 +2048,35 @@ Kg6FgBBCKg6FgBBCKg6FgBBCKg6FgBBCKg6FgBBCKs7/BxgunguQcWhCAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once you have done Level 2, make an Aitoff projection map of the sources in Galactic coordinates. Then, try and match the ROSAT catalog with other catalogs that you have access to.</p>
+<p>Make a Matplotlib plot of the image showing gridlines for longitude and latitude overlaid (e.g. every 30 degrees).</p>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Your solution here</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
