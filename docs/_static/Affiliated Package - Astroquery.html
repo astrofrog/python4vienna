@@ -1773,102 +1773,6 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">ValueError</span>                                Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-2-1f2629c9d67b&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>r <span class="ansiblue">=</span> Simbad<span class="ansiblue">.</span>query_region<span class="ansiblue">(</span><span class="ansiblue">&apos;m42&apos;</span><span class="ansiblue">,</span> radius<span class="ansiblue">=</span><span class="ansicyan">3.</span> <span class="ansiblue">*</span> u<span class="ansiblue">.</span>arcmin<span class="ansiblue">)</span><span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">query_region</span><span class="ansiblue">(self, coordinates, radius, equinox, epoch, verbose)</span>
-<span class="ansigreen">    442</span>         <span class="ansired"># coordinates</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">    443</span>         result = self.query_region_async(coordinates, radius=radius,
-<span class="ansigreen">--&gt; 444</span><span class="ansired">                                         equinox=equinox, epoch=epoch)
-</span><span class="ansigreen">    445</span>         <span class="ansigreen">return</span> self<span class="ansiblue">.</span>_parse_result<span class="ansiblue">(</span>result<span class="ansiblue">,</span> SimbadVOTableResult<span class="ansiblue">,</span> verbose<span class="ansiblue">=</span>verbose<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    446</span> <span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">query_region_async</span><span class="ansiblue">(self, coordinates, radius, equinox, epoch)</span>
-<span class="ansigreen">    472</span>         request_payload = self._args_to_payload(coordinates, radius=radius,
-<span class="ansigreen">    473</span>                                                 equinox<span class="ansiblue">=</span>equinox<span class="ansiblue">,</span> epoch<span class="ansiblue">=</span>epoch<span class="ansiblue">,</span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 474</span><span class="ansired">                                                 caller=&apos;query_region_async&apos;)
-</span><span class="ansigreen">    475</span>         response = commons.send_request(self.SIMBAD_URL, request_payload,
-<span class="ansigreen">    476</span>                                         self.TIMEOUT)
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">wrapper</span><span class="ansiblue">(*args, **kwargs)</span>
-<span class="ansigreen">     38</span>                 raise ValueError(&quot;Epoch must be specified as [J|B]&lt;epoch&gt;.\n&quot;
-<span class="ansigreen">     39</span>                                  &quot;Example: epoch=&apos;J2000&apos;&quot;)
-<span class="ansigreen">---&gt; 40</span><span class="ansired">         </span><span class="ansigreen">return</span> func<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">     41</span>     <span class="ansigreen">return</span> wrapper<span class="ansiblue"></span>
-<span class="ansigreen">     42</span> <span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">wrapper</span><span class="ansiblue">(*args, **kwargs)</span>
-<span class="ansigreen">     54</span>             <span class="ansigreen">except</span> ValueError<span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">     55</span>                 <span class="ansigreen">raise</span> ValueError<span class="ansiblue">(</span><span class="ansiblue">&quot;Equinox must be a number&quot;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">---&gt; 56</span><span class="ansired">         </span><span class="ansigreen">return</span> func<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">     57</span>     <span class="ansigreen">return</span> wrapper<span class="ansiblue"></span>
-<span class="ansigreen">     58</span> <span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">_args_to_payload</span><span class="ansiblue">(self, *args, **kwargs)</span>
-<span class="ansigreen">    681</span>             coordinates <span class="ansiblue">=</span> args<span class="ansiblue">[</span><span class="ansicyan">0</span><span class="ansiblue">]</span><span class="ansiblue"></span>
-<span class="ansigreen">    682</span>             args <span class="ansiblue">=</span> args<span class="ansiblue">[</span><span class="ansicyan">1</span><span class="ansiblue">:</span><span class="ansiblue">]</span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 683</span><span class="ansired">             </span>ra<span class="ansiblue">,</span> dec<span class="ansiblue">,</span> frame <span class="ansiblue">=</span> _parse_coordinates<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    684</span>             args <span class="ansiblue">=</span> <span class="ansiblue">[</span>ra<span class="ansiblue">,</span> dec<span class="ansiblue">]</span><span class="ansiblue"></span>
-<span class="ansigreen">    685</span>             kwargs<span class="ansiblue">[</span><span class="ansiblue">&apos;frame&apos;</span><span class="ansiblue">]</span> <span class="ansiblue">=</span> frame<span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/simbad/core.py</span> in <span class="ansicyan">_parse_coordinates</span><span class="ansiblue">(coordinates)</span>
-<span class="ansigreen">    748</span> <span class="ansigreen">def</span> _parse_coordinates<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">    749</span>     <span class="ansigreen">try</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 750</span><span class="ansired">         </span>c <span class="ansiblue">=</span> commons<span class="ansiblue">.</span>parse_coordinates<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    751</span>         <span class="ansired"># now c has some subclass of astropy.coordinate</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">    752</span>         <span class="ansired"># get ra, dec and frame</span><span class="ansiblue"></span><span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/utils/commons.py</span> in <span class="ansicyan">parse_coordinates</span><span class="ansiblue">(coordinates)</span>
-<span class="ansigreen">    186</span>         <span class="ansigreen">except</span> coord<span class="ansiblue">.</span>name_resolve<span class="ansiblue">.</span>NameResolveError<span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">    187</span>             <span class="ansigreen">try</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 188</span><span class="ansired">                 </span>c <span class="ansiblue">=</span> ICRSCoordGenerator<span class="ansiblue">(</span>coordinates<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    189</span>                 warnings<span class="ansiblue">.</span>warn<span class="ansiblue">(</span><span class="ansiblue">&quot;Coordinate string is being interpreted as an ICRS coordinate.&quot;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    190</span>             <span class="ansigreen">except</span> u<span class="ansiblue">.</span>UnitsError<span class="ansiblue">:</span><span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astroquery/utils/commons.py</span> in <span class="ansicyan">&lt;lambda&gt;</span><span class="ansiblue">(*args, **kwargs)</span>
-<span class="ansigreen">     22</span> <span class="ansigreen">try</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">     23</span>     <span class="ansigreen">from</span> astropy<span class="ansiblue">.</span>coordinates <span class="ansigreen">import</span> BaseCoordinateFrame<span class="ansiblue"></span>
-<span class="ansigreen">---&gt; 24</span><span class="ansired">     </span>ICRSCoordGenerator <span class="ansiblue">=</span> <span class="ansigreen">lambda</span> <span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">:</span> coord<span class="ansiblue">.</span>SkyCoord<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> frame<span class="ansiblue">=</span><span class="ansiblue">&apos;icrs&apos;</span><span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">     25</span>     GalacticCoordGenerator <span class="ansiblue">=</span> <span class="ansigreen">lambda</span> <span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">:</span> coord<span class="ansiblue">.</span>SkyCoord<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> frame<span class="ansiblue">=</span><span class="ansiblue">&apos;galactic&apos;</span><span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">     26</span>     FK5CoordGenerator <span class="ansiblue">=</span> <span class="ansigreen">lambda</span> <span class="ansiblue">*</span>args<span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">:</span> coord<span class="ansiblue">.</span>SkyCoord<span class="ansiblue">(</span><span class="ansiblue">*</span>args<span class="ansiblue">,</span> frame<span class="ansiblue">=</span><span class="ansiblue">&apos;fk5&apos;</span><span class="ansiblue">,</span> <span class="ansiblue">**</span>kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astropy/coordinates/sky_coordinate.py</span> in <span class="ansicyan">__init__</span><span class="ansiblue">(self, *args, **kwargs)</span>
-<span class="ansigreen">    151</span>         <span class="ansired"># creating the internal self._sky_coord_frame object</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">    152</span>         args <span class="ansiblue">=</span> list<span class="ansiblue">(</span>args<span class="ansiblue">)</span>  <span class="ansired"># Make it mutable</span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 153</span><span class="ansired">         </span>kwargs <span class="ansiblue">=</span> self<span class="ansiblue">.</span>_parse_inputs<span class="ansiblue">(</span>args<span class="ansiblue">,</span> kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    154</span> <span class="ansiblue"></span>
-<span class="ansigreen">    155</span>         <span class="ansired"># Set internal versions of object state attributes</span><span class="ansiblue"></span><span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astropy/coordinates/sky_coordinate.py</span> in <span class="ansicyan">_parse_inputs</span><span class="ansiblue">(self, args, kwargs)</span>
-<span class="ansigreen">    243</span>                 <span class="ansired"># along with any frame attributes like equinox or obstime which</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">    244</span>                 <span class="ansired"># were explicitly specified in the coordinate object (i.e. non-default).</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">--&gt; 245</span><span class="ansired">                 </span>coord_kwargs <span class="ansiblue">=</span> _parse_coordinate_arg<span class="ansiblue">(</span>args<span class="ansiblue">[</span><span class="ansicyan">0</span><span class="ansiblue">]</span><span class="ansiblue">,</span> frame<span class="ansiblue">,</span> units<span class="ansiblue">,</span> kwargs<span class="ansiblue">)</span><span class="ansiblue"></span>
-<span class="ansigreen">    246</span> <span class="ansiblue"></span>
-<span class="ansigreen">    247</span>             <span class="ansigreen">elif</span> len<span class="ansiblue">(</span>args<span class="ansiblue">)</span> <span class="ansiblue">&lt;=</span> <span class="ansicyan">3</span><span class="ansiblue">:</span><span class="ansiblue"></span>
-
-<span class="ansigreen">/Users/tom/miniconda3/envs/production/lib/python3.4/site-packages/astropy/coordinates/sky_coordinate.py</span> in <span class="ansicyan">_parse_coordinate_arg</span><span class="ansiblue">(coords, frame, units, init_kwargs)</span>
-<span class="ansigreen">   1391</span>     <span class="ansigreen">except</span> Exception <span class="ansigreen">as</span> err<span class="ansiblue">:</span><span class="ansiblue"></span>
-<span class="ansigreen">   1392</span>         raise ValueError(&apos;Cannot parse first argument data &quot;{0}&quot; for attribute &apos;
-<span class="ansigreen">-&gt; 1393</span><span class="ansired">                          &apos;{1}&apos;.format(value, frame_attr_name), err)
-</span><span class="ansigreen">   1394</span>     <span class="ansigreen">return</span> valid_kwargs<span class="ansiblue"></span>
-<span class="ansigreen">   1395</span> <span class="ansiblue"></span>
-
-<span class="ansired">ValueError</span>: (&apos;Cannot parse first argument data &quot;m42&quot; for attribute ra&apos;, ValueError(&quot;Syntax error parsing angle &apos;m42&apos;&quot;,))</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1886,16 +1790,25 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-3-c6695e756ff6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>r<span class="ansiblue">.</span>colnames<span class="ansiblue"></span>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
-<span class="ansired">NameError</span>: name &apos;r&apos; is not defined</pre>
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+[&apos;MAIN_ID&apos;,
+ &apos;RA&apos;,
+ &apos;DEC&apos;,
+ &apos;RA_PREC&apos;,
+ &apos;DEC_PREC&apos;,
+ &apos;COO_ERR_MAJA&apos;,
+ &apos;COO_ERR_MINA&apos;,
+ &apos;COO_ERR_ANGLE&apos;,
+ &apos;COO_QUAL&apos;,
+ &apos;COO_WAVELENGTH&apos;,
+ &apos;COO_BIBCODE&apos;]
+</pre>
 </div>
+
 </div>
 
 </div>
@@ -1918,16 +1831,37 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">NameError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-4-72cfd272ace1&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>r<span class="ansiblue"></span>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
-<span class="ansired">NameError</span>: name &apos;r&apos; is not defined</pre>
+<div class="output_html rendered_html output_subarea output_pyout">
+&lt;Table masked=True length=2290&gt;
+<table id="table4433510016">
+<thead><tr><th>MAIN_ID</th><th>RA</th><th>DEC</th><th>RA_PREC</th><th>DEC_PREC</th><th>COO_ERR_MAJA</th><th>COO_ERR_MINA</th><th>COO_ERR_ANGLE</th><th>COO_QUAL</th><th>COO_WAVELENGTH</th><th>COO_BIBCODE</th></tr></thead>
+<thead><tr><th></th><th>&quot;h:m:s&quot;</th><th>&quot;d:m:s&quot;</th><th></th><th></th><th>mas</th><th>mas</th><th>deg</th><th></th><th></th><th></th></tr></thead>
+<thead><tr><th>object</th><th>str416</th><th>str416</th><th>int16</th><th>int16</th><th>float32</th><th>float32</th><th>int16</th><th>str32</th><th>str32</th><th>object</th></tr></thead>
+<tr><td>* tet01 Ori C</td><td>05 35 16.4637</td><td>-05 23 22.848</td><td>9</td><td>9</td><td>42.090</td><td>28.600</td><td>90</td><td>A</td><td>O</td><td>2007A&amp;A...474..653V</td></tr>
+<tr><td>NAME tet01 Ori C2</td><td>05 35 16.4619</td><td>-05 23 22.844</td><td>8</td><td>8</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
+<tr><td>NAME tet01 Ori C1</td><td>05 35 16.4602</td><td>-05 23 22.883</td><td>8</td><td>8</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
+<tr><td>NAME tet01 Ori C3</td><td>05 35 16.463</td><td>-05 23 23.18</td><td>7</td><td>7</td><td>--</td><td>--</td><td>0</td><td>E</td><td></td><td></td></tr>
+<tr><td>ADS  4186 ABCD</td><td>05 35 16.4</td><td>-05 23 22</td><td>5</td><td>5</td><td>3000.000</td><td>3000.000</td><td>90</td><td>D</td><td></td><td></td></tr>
+<tr><td>[OW94] 163-322</td><td>05 35 16.34</td><td>-05 23 21.7</td><td>6</td><td>6</td><td>300.000</td><td>300.000</td><td>90</td><td>D</td><td></td><td></td></tr>
+<tr><td>TCC  65</td><td>05 35 16.3206</td><td>-05 23 22.531</td><td>9</td><td>9</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
+<tr><td>TCC  66</td><td>05 35 16.3241</td><td>-05 23 25.267</td><td>9</td><td>9</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
+<tr><td>* tet01 Ori F</td><td>05 35 16.7236</td><td>-05 23 25.168</td><td>9</td><td>9</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
+<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>V* V2167 Ori</td><td>05 35 06.540</td><td>-05 25 01.47</td><td>7</td><td>7</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
+<tr><td>[DRS2009] 755</td><td>05 35 26.56</td><td>-05 24 58.8</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>C</td><td>O</td><td>2009ApJS..183..261D</td></tr>
+<tr><td>[KAC2006] J053526.4-052503</td><td>05 35 26.4</td><td>-05 25 03</td><td>5</td><td>5</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2006ApJ...637..823K</td></tr>
+<tr><td>MLLA   14</td><td>05 35 10.76</td><td>-05 26 00.0</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2002ApJ...573..366M</td></tr>
+<tr><td>V* V2178 Ori</td><td>05 35 07.949</td><td>-05 21 17.25</td><td>7</td><td>7</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
+<tr><td>2MASS J05351972-0520299</td><td>05 35 19.73</td><td>-05 20 30.0</td><td>6</td><td>6</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
+<tr><td>MLLA  165</td><td>05 35 05.60</td><td>-05 24 39.4</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2002ApJ...573..366M</td></tr>
+<tr><td>V* V2145 Ori</td><td>05 35 04.819</td><td>-05 22 38.71</td><td>7</td><td>7</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
+<tr><td>[H97b] 20255</td><td>05 35 28.09</td><td>-05 22 35.8</td><td>6</td><td>6</td><td>150.000</td><td>150.000</td><td>90</td><td>C</td><td>O</td><td>2009A&amp;A...502..883R</td></tr>
+<tr><td>MLLA  550</td><td>05 35 04.70</td><td>-05 22 45.4</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2002ApJ...573..366M</td></tr>
+</table>
 </div>
+
 </div>
 
 </div>
@@ -1977,7 +1911,7 @@ div#notebook {
 
 <div class="output_html rendered_html output_subarea output_pyout">
 &lt;Table masked=True length=500&gt;
-<table id="table4452424168">
+<table id="table4408715920">
 <thead><tr><th>designation</th><th>ra</th><th>dec</th><th>clon</th><th>clat</th><th>sigra</th><th>sigdec</th><th>sigradec</th><th>w1mpro</th><th>w1sigmpro</th><th>w1snr</th><th>w1rchi2</th><th>w2mpro</th><th>w2sigmpro</th><th>w2snr</th><th>w2rchi2</th><th>w3mpro</th><th>w3sigmpro</th><th>w3snr</th><th>w3rchi2</th><th>w4mpro</th><th>w4sigmpro</th><th>w4snr</th><th>w4rchi2</th><th>nb</th><th>na</th><th>w1sat</th><th>w2sat</th><th>w3sat</th><th>w4sat</th><th>cc_flags</th><th>ext_flg</th><th>var_flg</th><th>moon_lev</th><th>w1nm</th><th>w1m</th><th>w2nm</th><th>w2m</th><th>w3nm</th><th>w3m</th><th>w4nm</th><th>w4m</th><th>w1mag</th><th>w1sigm</th><th>w1flg</th><th>w1mcor</th><th>w2mag</th><th>w2sigm</th><th>w2flg</th><th>w2mcor</th><th>w3mag</th><th>w3sigm</th><th>w3flg</th><th>w3mcor</th><th>w4mag</th><th>w4sigm</th><th>w4flg</th><th>w4mcor</th><th>tmass_key</th><th>j_m_2mass</th><th>j_msig_2mass</th><th>h_m_2mass</th><th>h_msig_2mass</th><th>k_m_2mass</th><th>k_msig_2mass</th><th>dist</th><th>angle</th><th>id</th></tr></thead>
 <thead><tr><th></th><th>deg</th><th>deg</th><th></th><th></th><th>arcs</th><th>arcs</th><th>arcs</th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>arcs</th><th>deg</th><th></th></tr></thead>
 <thead><tr><th>object</th><th>float64</th><th>float64</th><th>object</th><th>object</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>object</th><th>int32</th><th>object</th><th>object</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>object</th></tr></thead>
