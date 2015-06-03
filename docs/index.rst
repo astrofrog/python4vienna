@@ -72,6 +72,8 @@ Download the notebooks from `here <_static/python4vienna_part2.tgz>`__ before st
 Wednesday: Advanced Astropy and affiliated packages
 ---------------------------------------------------
 
+Download the notebooks from `here <_static/python4vienna_part3.tgz>`__ before starting (Windows users: use `this <_static/python4vienna_part3.zip>`__ instead).
+
 * `Handling FITS files <_static/Astropy%20-%20Handling%20FITS%20files.html>`_ [`Problem solutions <_static/Astropy%20-%20Handling%20FITS%20files%20-%20Solutions.html>`_]
 * `WCS Transformations <_static/Astropy%20-%20WCS%20Transformations.html>`_ [`Problem solutions <_static/Astropy%20-%20WCS%20Transformations%20-%20Solutions.html>`_]
 * `Astropy Affiliated Packages: APLpy and WCSAxes <_static/Affiliated%20Package%20-%20APLpy%20and%20WCSAxes.html>`_
