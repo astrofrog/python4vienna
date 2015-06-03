@@ -101,6 +101,9 @@ class BuildNotes(Command):
 
         from IPython.nbconvert.nbconvertapp import NbConvertApp
 
+        self.reinitialize_command('clear', inplace=True)
+        self.run_command('clear')
+
         self.reinitialize_command('run', inplace=True)
         self.run_command('run')
 
@@ -128,6 +131,9 @@ class BuildNotes(Command):
 
         for filename in glob.glob('notebooks/data/*'):
             shutil.copy2(filename, os.path.join(data_dir, os.path.basename(filename)))
+
+        self.reinitialize_command('clear', inplace=True)
+        self.run_command('clear')
 
 
 class DeployNotes(Command):
