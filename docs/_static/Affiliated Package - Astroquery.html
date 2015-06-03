@@ -1690,8 +1690,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="http://www.astropy.org/astroquery/">Astroquery</a> is an Astropy-affiliated package that contains a collection of tools to access online Astronomical data.</p>
-<p>The following modules have been completed using a common API:</p>
+<p><a href="http://www.astropy.org/astroquery/">Astroquery</a> is an Astropy-affiliated package that contains a collection of tools to access online Astronomical data. To install it, do:</p>
+<pre><code>pip install astroquery
+</code></pre><p>The following modules have been completed using a common API:</p>
 <ul>
 <li>SIMBAD Queries (<code>astroquery.simbad</code>)</li>
 <li>VizieR Queries (<code>astroquery.vizier</code>)</li>
@@ -1834,31 +1835,31 @@ div#notebook {
 <div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
-&lt;Table masked=True length=2290&gt;
-<table id="table4433510016">
+&lt;Table masked=True length=2246&gt;
+<table id="table4435021328">
 <thead><tr><th>MAIN_ID</th><th>RA</th><th>DEC</th><th>RA_PREC</th><th>DEC_PREC</th><th>COO_ERR_MAJA</th><th>COO_ERR_MINA</th><th>COO_ERR_ANGLE</th><th>COO_QUAL</th><th>COO_WAVELENGTH</th><th>COO_BIBCODE</th></tr></thead>
 <thead><tr><th></th><th>&quot;h:m:s&quot;</th><th>&quot;d:m:s&quot;</th><th></th><th></th><th>mas</th><th>mas</th><th>deg</th><th></th><th></th><th></th></tr></thead>
 <thead><tr><th>object</th><th>str416</th><th>str416</th><th>int16</th><th>int16</th><th>float32</th><th>float32</th><th>int16</th><th>str32</th><th>str32</th><th>object</th></tr></thead>
-<tr><td>* tet01 Ori C</td><td>05 35 16.4637</td><td>-05 23 22.848</td><td>9</td><td>9</td><td>42.090</td><td>28.600</td><td>90</td><td>A</td><td>O</td><td>2007A&amp;A...474..653V</td></tr>
-<tr><td>NAME tet01 Ori C2</td><td>05 35 16.4619</td><td>-05 23 22.844</td><td>8</td><td>8</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
-<tr><td>NAME tet01 Ori C1</td><td>05 35 16.4602</td><td>-05 23 22.883</td><td>8</td><td>8</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
-<tr><td>NAME tet01 Ori C3</td><td>05 35 16.463</td><td>-05 23 23.18</td><td>7</td><td>7</td><td>--</td><td>--</td><td>0</td><td>E</td><td></td><td></td></tr>
-<tr><td>ADS  4186 ABCD</td><td>05 35 16.4</td><td>-05 23 22</td><td>5</td><td>5</td><td>3000.000</td><td>3000.000</td><td>90</td><td>D</td><td></td><td></td></tr>
-<tr><td>[OW94] 163-322</td><td>05 35 16.34</td><td>-05 23 21.7</td><td>6</td><td>6</td><td>300.000</td><td>300.000</td><td>90</td><td>D</td><td></td><td></td></tr>
-<tr><td>TCC  65</td><td>05 35 16.3206</td><td>-05 23 22.531</td><td>9</td><td>9</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
-<tr><td>TCC  66</td><td>05 35 16.3241</td><td>-05 23 25.267</td><td>9</td><td>9</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
-<tr><td>* tet01 Ori F</td><td>05 35 16.7236</td><td>-05 23 25.168</td><td>9</td><td>9</td><td>--</td><td>--</td><td>0</td><td>B</td><td>N</td><td>2012ApJ...749..180C</td></tr>
+<tr><td>NAME ORI REGION</td><td>05 35 17.30</td><td>-05 23 28.0</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td>O</td><td></td></tr>
+<tr><td>M  42</td><td>05 35 17.3</td><td>-05 23 28</td><td>5</td><td>5</td><td>7500.000</td><td>7500.000</td><td>90</td><td>D</td><td></td><td>1981MNRAS.194..693L</td></tr>
+<tr><td>[OW94] 172-237</td><td>05 35 17.20</td><td>-05 23 26.8</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>1999AJ....117.1375S</td></tr>
+<tr><td>[OW94] 172-327</td><td>05 35 17.20</td><td>-05 23 26.8</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>1996AJ....111..846O</td></tr>
+<tr><td>DOH  7 175-328</td><td>05 35 17.5</td><td>-05 23 28</td><td>5</td><td>5</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2004AJ....127.3456D</td></tr>
+<tr><td>MAX 126</td><td>05 35 17.11</td><td>-05 23 29.3</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td>I</td><td>2005AJ....129.1534R</td></tr>
+<tr><td>DOH  7 171-327</td><td>05 35 17.1</td><td>-05 23 27</td><td>5</td><td>5</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2004AJ....127.3456D</td></tr>
+<tr><td>MAX 125</td><td>05 35 17.11</td><td>-05 23 26.6</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td>I</td><td>2005AJ....129.1534R</td></tr>
+<tr><td>[OW94] 171-326</td><td>05 35 17.1</td><td>-05 23 26</td><td>5</td><td>5</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2004AJ....127.3456D</td></tr>
 <tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>V* V2167 Ori</td><td>05 35 06.540</td><td>-05 25 01.47</td><td>7</td><td>7</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
-<tr><td>[DRS2009] 755</td><td>05 35 26.56</td><td>-05 24 58.8</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>C</td><td>O</td><td>2009ApJS..183..261D</td></tr>
-<tr><td>[KAC2006] J053526.4-052503</td><td>05 35 26.4</td><td>-05 25 03</td><td>5</td><td>5</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2006ApJ...637..823K</td></tr>
-<tr><td>MLLA   14</td><td>05 35 10.76</td><td>-05 26 00.0</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2002ApJ...573..366M</td></tr>
-<tr><td>V* V2178 Ori</td><td>05 35 07.949</td><td>-05 21 17.25</td><td>7</td><td>7</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
-<tr><td>2MASS J05351972-0520299</td><td>05 35 19.73</td><td>-05 20 30.0</td><td>6</td><td>6</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
-<tr><td>MLLA  165</td><td>05 35 05.60</td><td>-05 24 39.4</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2002ApJ...573..366M</td></tr>
-<tr><td>V* V2145 Ori</td><td>05 35 04.819</td><td>-05 22 38.71</td><td>7</td><td>7</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
-<tr><td>[H97b] 20255</td><td>05 35 28.09</td><td>-05 22 35.8</td><td>6</td><td>6</td><td>150.000</td><td>150.000</td><td>90</td><td>C</td><td>O</td><td>2009A&amp;A...502..883R</td></tr>
-<tr><td>MLLA  550</td><td>05 35 04.70</td><td>-05 22 45.4</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2002ApJ...573..366M</td></tr>
+<tr><td>TPSC  8</td><td>05 35 18.9148</td><td>-05 20 30.941</td><td>8</td><td>8</td><td>300.000</td><td>300.000</td><td>90</td><td>C</td><td>M</td><td>2011ApJ...733...50M</td></tr>
+<tr><td>[YKS96]  8</td><td>05 35 11.0</td><td>-05 26 00</td><td>5</td><td>5</td><td>3000.000</td><td>3000.000</td><td>90</td><td>D</td><td></td><td></td></tr>
+<tr><td>2MASS J05350705-0525005</td><td>05 35 07.05</td><td>-05 25 00.5</td><td>6</td><td>6</td><td>80.000</td><td>80.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
+<tr><td>[LB2000]  19</td><td>05 35 13.0</td><td>-05 20 41</td><td>5</td><td>5</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2000MNRAS.315...11L</td></tr>
+<tr><td>2MASS J05351814-0520295</td><td>05 35 18.142</td><td>-05 20 29.52</td><td>7</td><td>7</td><td>170.000</td><td>160.000</td><td>96</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
+<tr><td>COUP J053514.1-052620</td><td>05 35 14.191</td><td>-05 26 20.83</td><td>7</td><td>7</td><td>--</td><td>--</td><td>0</td><td>D</td><td></td><td>2005ApJS..160..319G</td></tr>
+<tr><td>JW  377</td><td>05 35 12.272</td><td>-05 20 45.24</td><td>7</td><td>7</td><td>60.000</td><td>60.000</td><td>90</td><td>B</td><td>I</td><td>2003yCat.2246....0C</td></tr>
+<tr><td>MLLA  919</td><td>05 35 12.59</td><td>-05 20 42.9</td><td>6</td><td>6</td><td>150.000</td><td>150.000</td><td>90</td><td>C</td><td>O</td><td>2009A&amp;A...502..883R</td></tr>
+<tr><td>[NW2007] OrionAN-0535146-52623</td><td>05 35 14.6</td><td>-05 26 23</td><td>5</td><td>5</td><td>--</td><td>--</td><td>0</td><td>E</td><td>m</td><td>2007MNRAS.374.1413N</td></tr>
+<tr><td>MLLA  945</td><td>05 35 19.69</td><td>-05 20 31.6</td><td>6</td><td>6</td><td>--</td><td>--</td><td>0</td><td>C</td><td>O</td><td>2009ApJS..183..261D</td></tr>
 </table>
 </div>
 
@@ -1911,7 +1912,7 @@ div#notebook {
 
 <div class="output_html rendered_html output_subarea output_pyout">
 &lt;Table masked=True length=500&gt;
-<table id="table4408715920">
+<table id="table4396440208">
 <thead><tr><th>designation</th><th>ra</th><th>dec</th><th>clon</th><th>clat</th><th>sigra</th><th>sigdec</th><th>sigradec</th><th>w1mpro</th><th>w1sigmpro</th><th>w1snr</th><th>w1rchi2</th><th>w2mpro</th><th>w2sigmpro</th><th>w2snr</th><th>w2rchi2</th><th>w3mpro</th><th>w3sigmpro</th><th>w3snr</th><th>w3rchi2</th><th>w4mpro</th><th>w4sigmpro</th><th>w4snr</th><th>w4rchi2</th><th>nb</th><th>na</th><th>w1sat</th><th>w2sat</th><th>w3sat</th><th>w4sat</th><th>cc_flags</th><th>ext_flg</th><th>var_flg</th><th>moon_lev</th><th>w1nm</th><th>w1m</th><th>w2nm</th><th>w2m</th><th>w3nm</th><th>w3m</th><th>w4nm</th><th>w4m</th><th>w1mag</th><th>w1sigm</th><th>w1flg</th><th>w1mcor</th><th>w2mag</th><th>w2sigm</th><th>w2flg</th><th>w2mcor</th><th>w3mag</th><th>w3sigm</th><th>w3flg</th><th>w3mcor</th><th>w4mag</th><th>w4sigm</th><th>w4flg</th><th>w4mcor</th><th>tmass_key</th><th>j_m_2mass</th><th>j_msig_2mass</th><th>h_m_2mass</th><th>h_msig_2mass</th><th>k_m_2mass</th><th>k_msig_2mass</th><th>dist</th><th>angle</th><th>id</th></tr></thead>
 <thead><tr><th></th><th>deg</th><th>deg</th><th></th><th></th><th>arcs</th><th>arcs</th><th>arcs</th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th>mag</th><th>mag</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th></th><th>mag</th><th></th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>mag</th><th>arcs</th><th>deg</th><th></th></tr></thead>
 <thead><tr><th>object</th><th>float64</th><th>float64</th><th>object</th><th>object</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>object</th><th>int32</th><th>object</th><th>object</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>int32</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>int32</th><th>float64</th><th>int32</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>object</th></tr></thead>
